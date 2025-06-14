@@ -1,0 +1,318 @@
+@import "variables";
+
+// @import "~bootstrap/scss/bootstrap";
+
+// Bootstrap Icons
+// @import "~bootstrap-icons/font/bootstrap-icons.css";
+
+// [v-cloak] > * {
+//     display: none;
+    
+// }
+// [v-cloak]::before {
+//     content: " ";
+//     display: block;
+//     position: absolute;
+//     width: 80px;
+//     height: 80px;
+//     background-image: url(../../public/img/loading.gif);
+//     background-size: cover;
+//     left: calc(50% - 40px);
+//     top: calc(50% - 40px);
+// }
+
+// .cloak > * {
+//     display: none;
+// }
+// .cloack::before {
+//     content: " ";
+//     display: block;
+//     position: absolute;
+//     width: 80px;
+//     height: 80px;
+//     background-image: url(../../public/img/loading.gif);
+//     background-size: cover;
+//     left: calc(50% - 40px);
+//     top: calc(50% - 40px);
+// }
+
+// Login, Register, Forgot & Reset Password
+#row-login {
+    padding: 0px !important;
+    scale: 1;
+}
+
+#container-image-banner-login {
+    height: 100vh;
+}
+#banner-login {
+    width: 100%;
+    height: 100%;
+}
+
+.container-column-login {
+    padding: 0px !important;
+}
+
+#container-main-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#container-box-main-login {
+    width: 75%;
+    scale: 0.85;
+}
+
+#container-logo-login {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+#container-logo-login #logo-login {
+    width: 147px;
+}
+
+#container-header-login {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+#container-header-login h1 {
+    background-color: unset;
+    color: #404040;
+    font-family: "Proxima Nova", sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    text-align: center;
+}
+#container-header-login p {
+    color: #6d6d6d;
+    font-family: "Proxima Nova", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+#container-input-area-login {
+    margin-top: 50px;
+}
+.container-text-field-login {
+    padding: 0px !important;
+}
+
+#container-remember-and-forget-pw {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+#container-remember-and-forget-pw p {
+    color: black;
+    margin: 0px !important;
+}
+
+#container-button-login {
+    margin-top: 25px;
+}
+#btn-login {
+    text-transform: unset;
+    color: white;
+    background-color: black;
+    height: 50px;
+    border-radius: 5px;
+}
+
+#container-footer-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+#container-footer-login p {
+    font-family: "Proxima Nova", sans-serif;
+    font-weight: 700;
+    color: #121212;
+}
+#sign-up {
+    color: black;
+}
+
+.text-bolder {
+    font-weight: 700;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+#container-box-main-login {
+    width: 75%;
+    scale: 0.75;
+}
+
+#container-input-area-login {
+    margin-top: 20px;
+}
+#container-header-login p {
+    color: #6d6d6d;
+    font-family: "Proxima Nova", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+}
+#container-footer-login p {
+    font-family: "Proxima Nova", sans-serif;
+    font-weight: 700;
+    color: #121212;
+    text-align: center;
+}
+#sign-up {
+    color: black;
+}
+
+.text-bolder {
+    font-weight: 700;
+}
+
+.v-btn {
+    text-transform: none !important;
+}
+
+// Header Bar
+.username {
+    min-width: calc(50px + (50 * 100vw / 1728));
+    font-size: 14px;
+    margin: 0 4px;
+}
+
+.username-xs {
+    min-width: 25vw;
+    font-size: 14px;
+    margin: 0 4px;
+}
+
+.btn-back {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+}
+
+.text-label {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.5px;
+}
+
+@media only screen and (max-width: 320px) {
+    #container-main-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        height: 150vh;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .button-add {
+        width: 100%;
+    }
+
+    .number-pagination {
+        justify-content: center !important;
+    }
+}
+
+@media only screen and (min-width: 430px) {
+    .pagination {
+        width: 300px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #container-box-main-login {
+        width: 85%;
+        scale: 0.75;
+    }
+
+    #container-input-area-login {
+        margin-top: 20px;
+    }
+    #container-header-login p {
+        color: #6d6d6d;
+        font-family: "Proxima Nova", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        text-align: center;
+    }
+    #container-footer-login p {
+        font-family: "Proxima Nova", sans-serif;
+        font-weight: 700;
+        color: #121212;
+        text-align: center;
+    }
+    #container-remember-and-forget-pw {
+        height: 70px;
+        padding: 0px !important;
+        margin: 0px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-content: flex-start;
+        align-items: flex-start;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    #container-box-main-login {
+        width: 85%;
+        scale: 0.85;
+    }
+}
+
+
+// Paginate Data List
+
+
+// [v-cloak] > * {
+//     display: none;
+    
+// }
+// [v-cloak]::before {
+//     content: " ";
+//     display: block;
+//     position: absolute;
+//     width: 80px;
+//     height: 80px;
+//     background-image: url(../../public/img/loading.gif);
+//     background-size: cover;
+//     left: calc(50% - 40px);
+//     top: calc(50% - 40px);
+// }
+
+// .cloak > * {
+//     display: none;
+// }
+// .cloack::before {
+//     content: " ";
+//     display: block;
+//     position: absolute;
+//     width: 80px;
+//     height: 80px;
+//     background-image: url(../../public/img/loading.gif);
+//     background-size: cover;
+//     left: calc(50% - 40px);
+//     top: calc(50% - 40px);
+// }

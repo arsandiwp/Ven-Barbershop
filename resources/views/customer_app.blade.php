@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <!-- Styles -->
+        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+        {{-- <link href="https://cdn.jsdelivr.net/npm/vuetify@2.4.0/dist/vuetify.min.css" rel="stylesheet"> --}}
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://unpkg.com/@egjs/flicking/dist/flicking.css" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://unpkg.com/@egjs/flicking/dist/flicking-inline.css" crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="https://naver.github.io/egjs-flicking-plugins/release/latest/dist/flicking-plugins.css">
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css"
+        />
+
+        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+        <style>
+            .no-shadow.v-btn{
+                box-shadow: none !important;
+                width: 100px;
+            }
+            .round-left.v-btn{
+                border-top-left-radius: 5px !important;
+                border-bottom-left-radius: 5px !important;
+            }
+            .round-right.v-btn{
+                border-top-right-radius: 5px !important;
+                border-bottom-right-radius: 5px !important;
+            }
+            .v-tooltip__content {
+                pointer-events: initial;
+            }
+        </style>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <div id="customer_app" v-cloak>
+            <v-app>
+                <confirm ref="confirm"></confirm>
+                <alert ref="alert"></alert>
+                <loading ref="loading" :dialog="loading_dialog"></loading>
+                <cloacking ref="cloacking" :dialog="cloacking_dialog"></cloacking>
+                <error-dialog v-model="err_dialog" :err_dialog="err_dialog"></error-dialog>
+                <snackbar :snackbar="snackbar"></snackbar>
+
+                <v-main style="background-color:white;">
+                    {{-- <v-sheet
+                        id="scrolling-techniques-7"
+                        class="overflow-y-auto"
+                        max-height="calc(100vh - 48px)"
+                        style="margin-top: 48px"
+                    >
+                        <v-container class="fluid ma-0">
+                            <v-layout row wrap class="ma-0" style="border: 1px solid red;"> --}}
+                                <router-view v-if="!needReload()" :key="this.$route.path" ref="child"></router-view>
+                            {{-- </v-layout>
+                        </v-container>
+                    </v-sheet> --}}
+                </v-main>
+
+            </v-app>
+        </div>
+        <script src="{{ asset('js/customer_app.js') }}"></script>
+    </body>
+</html>
