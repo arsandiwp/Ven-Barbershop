@@ -33,11 +33,11 @@
                                 >
                                     <img
                                         :src="users.photo"
-                                        :alt="getInitial(userLogin.name)"
+                                        :alt="getInitial(adminLogin.name)"
                                     />
                                 </v-avatar>
                                 <span v-else class="white--text text-h5">{{
-                                    getInitial(userLogin.name)
+                                    getInitial(adminLogin.name)
                                 }}</span>
                             </v-avatar>
                         </v-btn>
@@ -90,7 +90,7 @@ export default {
         id: null,
         custom_title: null,
         profile_menu: false,
-        userLogin: {},
+        adminLogin: {},
         users: {},
     }),
 
@@ -100,8 +100,8 @@ export default {
         },
 
         initData() {
-            this.userLogin = JSON.parse(localStorage.userLogin);
-            this.id = this.userLogin.id;
+            this.adminLogin = JSON.parse(localStorage.adminLogin);
+            this.id = this.adminLogin.id;
             this.initAxio();
 
             this.custom_title = this.title;

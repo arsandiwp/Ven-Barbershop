@@ -17,21 +17,7 @@ import UserImport from "./components/import-file.vue";
 import RolesList from "./components/roles/role-list";
 import Role from "./components/roles/role-cru";
 
-import QnaList from "./components/qna/qna-list";
-import Qna from "./components/qna/qna-cru";
-
-import TemplateWebList from "./components/template-web/template-web-list";
-import TemplateWeb from "./components/template-web/template-web-cru";
-
 import PrivilegesList from "./components/privileges/privilege-list";
-
-import ArtificialIntelligence from "./components/artificial-intelligence/artificial-intelligence";
-
-import ModelList from "./components/model/model-list";
-
-import Hotels from "./components/trip-advisor/hotels";
-import Restaurants from "./components/trip-advisor/restaurants";
-import Attractions from "./components/trip-advisor/attractions";
 
 Vue.use(Router);
 
@@ -177,85 +163,6 @@ routeArr.push({
     name: "privileges",
     component: PrivilegesList,
     props: { api: api + "/privilege/paginate?" },
-});
-
-routeArr.push({
-    title: "Artificial Intelligence",
-    name: "ai",
-    path: "/ai",
-    component: ArtificialIntelligence,
-});
-
-routeArr.push({
-    title: "Model AI",
-    path: "/ai-setting",
-    name: "ai-setting",
-    component: ModelList,
-    props: { api: api + "/model-settings", apiCUD: api + "/model-settings" },
-});
-
-routeArr.push({
-    title: "Add Qna",
-    path: "/qna/add",
-    name: "add-qna",
-    component: Qna,
-});
-routeArr.push({
-    title: "Edit Qna",
-    path: "/qna/edit/:id",
-    name: "edit-qna",
-    component: Qna,
-});
-routeArr.push({
-    title: "Qna",
-    path: "/qna",
-    name: "qna",
-    component: QnaList,
-    props: { api: api + "/qna/paginate?", apiCUD: api + "/qna" },
-});
-
-routeArr.push({
-    title: "Add Template Web",
-    path: "/template-web/add",
-    name: "add-template-web",
-    component: TemplateWeb,
-});
-routeArr.push({
-    title: "Edit Template Web",
-    path: "/template-web/edit/:id",
-    name: "edit-template-web",
-    component: TemplateWeb,
-});
-routeArr.push({
-    title: "Template Web",
-    path: "/template-web",
-    name: "template-web",
-    component: TemplateWebList,
-    props: {
-        api: api + "/template-web/paginate?",
-        apiCUD: api + "/template-web",
-    },
-});
-
-routeArr.push({
-    title: "Hotels",
-    path: "/hotels",
-    name: "hotels",
-    component: Hotels,
-});
-
-routeArr.push({
-    title: "Restaurants",
-    path: "/restaurants",
-    name: "restaurants",
-    component: Restaurants,
-});
-
-routeArr.push({
-    title: "Attractions",
-    path: "/attractions",
-    name: "attractions",
-    component: Attractions,
 });
 
 routeArr.push({

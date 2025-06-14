@@ -454,11 +454,11 @@ export default {
                             },
                         });
 
-                        let userLogin = JSON.parse(
-                            localStorage.getItem("userLogin")
+                        let adminLogin = JSON.parse(
+                            localStorage.getItem("adminLogin")
                         );
-                        if (this.model.id == userLogin.id) {
-                            this.updateUserLogin(this.model.id);
+                        if (this.model.id == adminLogin.id) {
+                            this.updateadminLogin(this.model.id);
                         }
                     } else {
                         alert(JSON.stringify(response));

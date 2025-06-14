@@ -191,7 +191,7 @@ export default {
 
                         const user = response.data.data[0];
                         localStorage.token = response.data.token;
-                        localStorage.userLogin = JSON.stringify(user);
+                        localStorage.adminLogin = JSON.stringify(user);
 
                         if (this.is_remembered) {
                             const date = new Date();

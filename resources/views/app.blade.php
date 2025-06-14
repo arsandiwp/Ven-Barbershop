@@ -18,7 +18,7 @@
 
 <body>
     <div id="app">
-        <v-app v-cloak v-if="!userLogin">
+        <v-app v-cloak v-if="!adminLogin">
             <confirm ref="confirm"></confirm>
             <confirm ref="dialog"></confirm>
             <alert ref="alert"></alert>

@@ -6,14 +6,12 @@
             :api="api"
             :list="list"
             :model="form"
-        ></paginated-data-list>
-        <ChatWidget />
+        ></paginated-data-list>        
     </v-container>
 </template>
 
 <script>
 import PaginatedDataList from "../paginate-data-list";
-import ChatWidget from "../ChatWidget2.vue";
 
 export default {
     data() {
@@ -56,8 +54,7 @@ export default {
         };
     },
     components: {
-        PaginatedDataList,
-        ChatWidget,
+        PaginatedDataList,        
     },
     props: {
         api: {

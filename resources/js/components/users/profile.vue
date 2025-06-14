@@ -238,7 +238,7 @@ export default {
             loading: false,
             userAvatarColor: "white",
 
-            userLogin: {},
+            adminLogin: {},
         };
     },
 
@@ -286,8 +286,8 @@ export default {
 
     methods: {
         initData() {
-            this.userLogin = JSON.parse(localStorage.userLogin);
-            this.id = this.userLogin.id;
+            this.adminLogin = JSON.parse(localStorage.adminLogin);
+            this.id = this.adminLogin.id;
             this.nav_path = this.$route.path.split("/");
             var last = this.nav_path.length - 1;
             for (var i = 1; i <= last; i++) {

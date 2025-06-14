@@ -6,7 +6,6 @@ use App\Exports\UsersExport;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Imports\UsersImport;
-use App\Models\Booking;
 use App\Services\AuthenticationService;
 use App\Services\FileHandlerService;
 use App\Services\MailService;
@@ -379,153 +378,153 @@ class UserController extends Controller
         return ResponseHelper::create($this->userService->restore($id));
     }
 
-    public function export()
-    {
-        return Excel::download(new UsersExport, 'users.xlsx');
-    }
+    // public function export()
+    // {
+    //     return Excel::download(new UsersExport, 'users.xlsx');
+    // }
 
-    public function import(Request $request)
-    {
-        $request->validate([
-            'file' => 'required|file|mimes:xlsx,xls|max:10240', // max 10MB
-        ]);
+    // public function import(Request $request)
+    // {
+    //     $request->validate([
+    //         'file' => 'required|file|mimes:xlsx,xls|max:10240', // max 10MB
+    //     ]);
 
-        try {
-            Excel::import(new UsersImport, $request->file('file'));
+    //     try {
+    //         Excel::import(new UsersImport, $request->file('file'));
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Data pengguna berhasil diimport'
-            ]);
-        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
-            // Tangkap error validasi dari Excel
-            $failures = $e->failures();
-            $errors = [];
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => 'Data pengguna berhasil diimport'
+    //         ]);
+    //     } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+    //         // Tangkap error validasi dari Excel
+    //         $failures = $e->failures();
+    //         $errors = [];
 
-            foreach ($failures as $failure) {
-                $errors[] = [
-                    'row' => $failure->row(),
-                    'attribute' => $failure->attribute(),
-                    'errors' => $failure->errors()
-                ];
-            }
+    //         foreach ($failures as $failure) {
+    //             $errors[] = [
+    //                 'row' => $failure->row(),
+    //                 'attribute' => $failure->attribute(),
+    //                 'errors' => $failure->errors()
+    //             ];
+    //         }
 
-            return response()->json([
-                'success' => false,
-                'message' => 'Terdapat kesalahan pada data import',
-                'errors' => $errors
-            ], 422);
-        } catch (\Exception $e) {
-            Log::error('Error importing users: ' . $e->getMessage());
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Terdapat kesalahan pada data import',
+    //             'errors' => $errors
+    //         ], 422);
+    //     } catch (\Exception $e) {
+    //         Log::error('Error importing users: ' . $e->getMessage());
 
-            return response()->json([
-                'success' => false,
-                'message' => 'Terjadi kesalahan saat import data: ' . $e->getMessage()
-            ], 500);
-        }
-    }
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Terjadi kesalahan saat import data: ' . $e->getMessage()
+    //         ], 500);
+    //     }
+    // }
 
-    public function downloadTemplate()
-    {
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
+    // public function downloadTemplate()
+    // {
+    //     $spreadsheet = new Spreadsheet();
+    //     $sheet = $spreadsheet->getActiveSheet();
 
-        $headers = ['full_name', 'email', 'phone', 'address', 'photo', 'status'];
-        $column = 'A';
+    //     $headers = ['full_name', 'email', 'phone', 'address', 'photo', 'status'];
+    //     $column = 'A';
 
-        foreach ($headers as $header) {
-            $sheet->setCellValue($column . '1', $header);
-            $column++;
-        }
+    //     foreach ($headers as $header) {
+    //         $sheet->setCellValue($column . '1', $header);
+    //         $column++;
+    //     }
 
-        $headerStyle = [
-            'font' => [
-                'bold' => true,
-                'color' => ['rgb' => 'FFFFFF'],
-            ],
-            'fill' => [
-                'fillType' => Fill::FILL_SOLID,
-                'startColor' => ['rgb' => '4472C4'],
-            ],
-            'alignment' => [
-                'horizontal' => Alignment::HORIZONTAL_CENTER,
-            ]
-        ];
+    //     $headerStyle = [
+    //         'font' => [
+    //             'bold' => true,
+    //             'color' => ['rgb' => 'FFFFFF'],
+    //         ],
+    //         'fill' => [
+    //             'fillType' => Fill::FILL_SOLID,
+    //             'startColor' => ['rgb' => '4472C4'],
+    //         ],
+    //         'alignment' => [
+    //             'horizontal' => Alignment::HORIZONTAL_CENTER,
+    //         ]
+    //     ];
 
-        $sheet->getStyle('A1:F1')->applyFromArray($headerStyle);
+    //     $sheet->getStyle('A1:F1')->applyFromArray($headerStyle);
 
-        // // Tambahkan data contoh
-        // $sampleData = [
-        //     ['John Doe', 'john.doe@example.com', '+6281234567890', 'Jl. Contoh No. 123, Jakarta', '=HYPERLINK("https://example.com/john.jpg","Photo")', 'Active'],
-        //     ['Jane Smith', 'jane.smith@example.com', '081298765432', 'Jl. Sample No. 456, Bandung', 'https://example.com/jane.jpg', 'Active'],
-        //     ['Robert Johnson', 'robert@example.com', '62812345678', '', '', 'Pending'],
-        //     ['Sarah Williams', 'sarah@example.com', '', 'Jl. Test No. 789, Surabaya', '=HYPERLINK("https://example.com/sarah.jpg","Photo")', 'Active'],
-        // ];
+    //     // // Tambahkan data contoh
+    //     // $sampleData = [
+    //     //     ['John Doe', 'john.doe@example.com', '+6281234567890', 'Jl. Contoh No. 123, Jakarta', '=HYPERLINK("https://example.com/john.jpg","Photo")', 'Active'],
+    //     //     ['Jane Smith', 'jane.smith@example.com', '081298765432', 'Jl. Sample No. 456, Bandung', 'https://example.com/jane.jpg', 'Active'],
+    //     //     ['Robert Johnson', 'robert@example.com', '62812345678', '', '', 'Pending'],
+    //     //     ['Sarah Williams', 'sarah@example.com', '', 'Jl. Test No. 789, Surabaya', '=HYPERLINK("https://example.com/sarah.jpg","Photo")', 'Active'],
+    //     // ];
 
-        // $row = 2;
-        // foreach ($sampleData as $rowData) {
-        //     $column = 'A';
-        //     foreach ($rowData as $cellValue) {
-        //         $sheet->setCellValue($column . $row, $cellValue);
-        //         $column++;
-        //     }
-        //     $row++;
-        // }
+    //     // $row = 2;
+    //     // foreach ($sampleData as $rowData) {
+    //     //     $column = 'A';
+    //     //     foreach ($rowData as $cellValue) {
+    //     //         $sheet->setCellValue($column . $row, $cellValue);
+    //     //         $column++;
+    //     //     }
+    //     //     $row++;
+    //     // }
 
-        foreach (range('A', 'F') as $col) {
-            $sheet->getColumnDimension($col)->setAutoSize(true);
-        }
+    //     foreach (range('A', 'F') as $col) {
+    //         $sheet->getColumnDimension($col)->setAutoSize(true);
+    //     }
 
-        $instructionSheet = $spreadsheet->createSheet();
-        $instructionSheet->setTitle('Petunjuk');
+    //     $instructionSheet = $spreadsheet->createSheet();
+    //     $instructionSheet->setTitle('Petunjuk');
 
-        $instructions = [
-            ['PETUNJUK PENGISIAN TEMPLATE IMPORT USER', ''],
-            ['', ''],
-            ['Kolom', 'Keterangan'],
-            ['full_name', 'Nama lengkap user (wajib diisi)'],
-            ['email', 'Email user (wajib diisi, harus unik)'],
-            ['phone', 'Nomor telepon (opsional, format akan distandarisasi ke awalan 62)'],
-            ['address', 'Alamat lengkap (opsional)'],
-            ['photo', 'URL foto atau format hyperlink Excel (opsional)'],
-            ['status', 'Status user: Active atau Pending (opsional, default: Active)'],
-            ['', ''],
-            ['Catatan:', ''],
-            ['1. Password default untuk semua user adalah 123456', ''],
-            ['2. Format hyperlink di Excel: =HYPERLINK("https://example.com/photo.jpg","Photo")', ''],
-            ['3. Nomor telepon akan otomatis diformat dengan awalan 62', ''],
-        ];
+    //     $instructions = [
+    //         ['PETUNJUK PENGISIAN TEMPLATE IMPORT USER', ''],
+    //         ['', ''],
+    //         ['Kolom', 'Keterangan'],
+    //         ['full_name', 'Nama lengkap user (wajib diisi)'],
+    //         ['email', 'Email user (wajib diisi, harus unik)'],
+    //         ['phone', 'Nomor telepon (opsional, format akan distandarisasi ke awalan 62)'],
+    //         ['address', 'Alamat lengkap (opsional)'],
+    //         ['photo', 'URL foto atau format hyperlink Excel (opsional)'],
+    //         ['status', 'Status user: Active atau Pending (opsional, default: Active)'],
+    //         ['', ''],
+    //         ['Catatan:', ''],
+    //         ['1. Password default untuk semua user adalah 123456', ''],
+    //         ['2. Format hyperlink di Excel: =HYPERLINK("https://example.com/photo.jpg","Photo")', ''],
+    //         ['3. Nomor telepon akan otomatis diformat dengan awalan 62', ''],
+    //     ];
 
-        $row = 1;
-        foreach ($instructions as $rowData) {
-            $instructionSheet->setCellValue('A' . $row, $rowData[0]);
-            $instructionSheet->setCellValue('B' . $row, $rowData[1]);
-            $row++;
-        }
+    //     $row = 1;
+    //     foreach ($instructions as $rowData) {
+    //         $instructionSheet->setCellValue('A' . $row, $rowData[0]);
+    //         $instructionSheet->setCellValue('B' . $row, $rowData[1]);
+    //         $row++;
+    //     }
 
-        $instructionSheet->getStyle('A1')->getFont()->setBold(true)->setSize(14);
-        $instructionSheet->getStyle('A3:B3')->getFont()->setBold(true);
-        $instructionSheet->getStyle('A3:B3')->getFill()
-            ->setFillType(Fill::FILL_SOLID)
-            ->getStartColor()->setRGB('DDEBF7');
+    //     $instructionSheet->getStyle('A1')->getFont()->setBold(true)->setSize(14);
+    //     $instructionSheet->getStyle('A3:B3')->getFont()->setBold(true);
+    //     $instructionSheet->getStyle('A3:B3')->getFill()
+    //         ->setFillType(Fill::FILL_SOLID)
+    //         ->getStartColor()->setRGB('DDEBF7');
 
-        $instructionSheet->getColumnDimension('A')->setWidth(60);
-        $instructionSheet->getColumnDimension('B')->setWidth(60);
+    //     $instructionSheet->getColumnDimension('A')->setWidth(60);
+    //     $instructionSheet->getColumnDimension('B')->setWidth(60);
 
-        $spreadsheet->setActiveSheetIndex(0);
+    //     $spreadsheet->setActiveSheetIndex(0);
 
-        $filename = 'template_import_user.xlsx';
-        $tempPath = storage_path('app/public/templates/' . $filename);
+    //     $filename = 'template_import_user.xlsx';
+    //     $tempPath = storage_path('app/public/templates/' . $filename);
 
-        if (!file_exists(dirname($tempPath))) {
-            mkdir(dirname($tempPath), 0755, true);
-        }
+    //     if (!file_exists(dirname($tempPath))) {
+    //         mkdir(dirname($tempPath), 0755, true);
+    //     }
 
-        $writer = new Xlsx($spreadsheet);
-        $writer->save($tempPath);
+    //     $writer = new Xlsx($spreadsheet);
+    //     $writer->save($tempPath);
 
-        return response()->download($tempPath, $filename, [
-            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        ])->deleteFileAfterSend(true);
-    }
+    //     return response()->download($tempPath, $filename, [
+    //         'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    //     ])->deleteFileAfterSend(true);
+    // }
 }
