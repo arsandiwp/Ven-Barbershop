@@ -17,6 +17,12 @@ import UserImport from "./components/import-file.vue";
 import RolesList from "./components/roles/role-list";
 import Role from "./components/roles/role-cru";
 
+import ServiceList from "./components/services/service-list";
+import ServiceCRU from "./components/services/service-cru";
+
+import NewsList from "./components/news/news-list";
+import NewsCRU from "./components/news/news-cru";
+
 import PrivilegesList from "./components/privileges/privilege-list";
 
 Vue.use(Router);
@@ -24,162 +30,218 @@ Vue.use(Router);
 var baseUrl = "";
 var nodeENV = "";
 if (process.env.NODE_ENV == "production") {
-    baseUrl = "https://www.zkdigimax.com";
-    nodeENV = "prod";
+  baseUrl = "https://www.zkdigimax.com";
+  nodeENV = "prod";
 } else if (process.env.NODE_ENV == "staging") {
-    baseUrl = "https://sandbox-zk-digimax.solen.id";
-    nodeENV = "staging";
+  baseUrl = "https://sandbox-zk-digimax.solen.id";
+  nodeENV = "staging";
 } else if (process.env.NODE_ENV == "localhost") {
-    baseUrl = "http://localhost:8000";
-    nodeENV = "dev";
+  baseUrl = "http://localhost:8000";
+  nodeENV = "dev";
 } else {
-    baseUrl = "http://127.0.0.1:8000";
-    nodeENV = "dev";
+  baseUrl = "http://127.0.0.1:8000";
+  nodeENV = "dev";
 }
 
 const apiUrl = "/api/v1";
 const api = baseUrl + apiUrl;
 
 Vue.mixin({
-    data() {
-        return {
-            API: api,
-            nodeENV: nodeENV,
-        };
-    },
+  data() {
+    return {
+      API: api,
+      nodeENV: nodeENV,
+    };
+  },
 });
 
 let routeArr = [];
 
-
 routeArr.push({
-    title: "Home",
-    icon: "user",
-    path: "/dashboard",
-    redirect: "/",
+  title: "Home",
+  icon: "user",
+  path: "/dashboard",
+  redirect: "/",
 });
 
 routeArr.push({
-    title: "Home",
-    path: "/",
-    component: Home,
-    name: "home",
+  title: "Home",
+  path: "/",
+  component: Home,
+  name: "home",
 });
 
 routeArr.push({
-    title: "Register",
-    name: "register",
-    path: "/register",
-    component: Register,
+  title: "Register",
+  name: "register",
+  path: "/register",
+  component: Register,
 });
 
 routeArr.push({
-    title: "Login",
-    name: "login",
-    path: "/login",
-    component: Login,
+  title: "Login",
+  name: "login",
+  path: "/login",
+  component: Login,
 });
 
 routeArr.push({
-    title: "Forgot Password",
-    name: "forgot-password",
-    path: "/forgot-password",
-    component: ForgotPassword,
+  title: "Forgot Password",
+  name: "forgot-password",
+  path: "/forgot-password",
+  component: ForgotPassword,
 });
 
 routeArr.push({
-    title: "Reset Password",
-    name: "reset-password",
-    path: "/reset-password/:token",
-    component: ResetPassword,
+  title: "Reset Password",
+  name: "reset-password",
+  path: "/reset-password/:token",
+  component: ResetPassword,
 });
 
 routeArr.push({
-    title: "Add User",
-    path: "/users/add",
-    name: "add-user",
-    component: User,
-    props: { api: api + "/user", editable: true },
+  title: "Add User",
+  path: "/users/add",
+  name: "add-user",
+  component: User,
+  props: { api: api + "/user", editable: true },
 });
 routeArr.push({
-    title: "Edit User",
-    path: "/users/edit/:id",
-    name: "edit-user",
-    component: User,
-    props: { api: api + "/user", editable: true },
+  title: "Edit User",
+  path: "/users/edit/:id",
+  name: "edit-user",
+  component: User,
+  props: { api: api + "/user", editable: true },
 });
 routeArr.push({
-    title: "Detail User",
-    path: "/users/:id",
-    name: "detil-user",
-    component: User,
-    props: { api: api + "/user", editable: false },
+  title: "Detail User",
+  path: "/users/:id",
+  name: "detil-user",
+  component: User,
+  props: { api: api + "/user", editable: false },
 });
 routeArr.push({
-    title: "User",
-    path: "/users",
-    name: "users",
-    component: UserList,
-    props: { api: api + "/user/paginate?", apiCUD: api + "/user" },
-});
-
-routeArr.push({
-    title: "Profile",
-    path: "/profile",
-    component: Profile,
-    props: { api: api + "/profile" },
+  title: "User",
+  path: "/users",
+  name: "users",
+  component: UserList,
+  props: { api: api + "/user/paginate?", apiCUD: api + "/user" },
 });
 
 routeArr.push({
-    title: "User Import",
-    path: "/import-users",
-    component: UserImport,
-    // props: { api: api + "/profile" },
+  title: "Profile",
+  path: "/profile",
+  component: Profile,
+  props: { api: api + "/profile" },
 });
 
 routeArr.push({
-    title: "Add Roles",
-    path: "/roles/add",
-    name: "add-role",
-    component: Role,
-});
-routeArr.push({
-    title: "Edit Roles",
-    path: "/roles/edit/:id",
-    name: "edit-role",
-    component: Role,
-});
-routeArr.push({
-    title: "Roles",
-    path: "/roles",
-    name: "roles",
-    component: RolesList,
-    props: { api: api + "/role/paginate?", apiCUD: api + "/role" },
+  title: "User Import",
+  path: "/import-users",
+  component: UserImport,
+  // props: { api: api + "/profile" },
 });
 
 routeArr.push({
-    title: "Privileges",
-    path: "/privileges",
-    name: "privileges",
-    component: PrivilegesList,
-    props: { api: api + "/privilege/paginate?" },
+  title: "Add Roles",
+  path: "/roles/add",
+  name: "add-role",
+  component: Role,
+});
+routeArr.push({
+  title: "Edit Roles",
+  path: "/roles/edit/:id",
+  name: "edit-role",
+  component: Role,
+});
+routeArr.push({
+  title: "Roles",
+  path: "/roles",
+  name: "roles",
+  component: RolesList,
+  props: { api: api + "/role/paginate?", apiCUD: api + "/role" },
 });
 
 routeArr.push({
-    title: "Page Not Found",
-    name: "404",
-    path: "*",
-    component: {
-        template:
-            '<v-main><v-container style="height:100% !important;"><v-layout row class="text-xs-center" align-center justify-center><v-flex class="text-xs-center" style="height: 100vh;" id="card" d-flex xs12 mx-auto align-center justify-center>' +
-            '<span class="title pt-5">404 | Page Not Found</span>' +
-            "</v-flex></v-layout></v-container></v-main>",
-    },
+  title: "Privileges",
+  path: "/privileges",
+  name: "privileges",
+  component: PrivilegesList,
+  props: { api: api + "/privilege/paginate?" },
+});
+
+routeArr.push({
+  title: "Service",
+  name: "service",
+  path: "/service",
+  component: ServiceList,
+  props: { api: api + "/services/paginate?", apiCUD: api + "/services" },
+});
+
+routeArr.push({
+  title: "Add Service",
+  name: "add-service",
+  path: "/service/add",
+  component: ServiceCRU,
+  props: { api: api + "/services", editable: true },
+});
+
+routeArr.push({
+  title: "Edit Service",
+  name: "edit-service",
+  path: "/service/edit/:id",
+  component: ServiceCRU,
+  // props: { type: "Edit", apiCUD: api + "/services", editable: true },
+  props: { api: api + "/services", editable: true },
+});
+
+routeArr.push({
+  title: "Detail Service",
+  path: "/service/:id",
+  name: "detil-service",
+  component: ServiceCRU,
+  props: { api: api + "/services", editable: false },
+});
+
+routeArr.push({
+  title: "News",
+  name: "news",
+  path: "/news",
+  component: NewsList,
+  props: { api: api + "/news/paginate?", apiCUD: api + "/news" },
+});
+
+routeArr.push({
+  title: "Add News",
+  name: "add-news",
+  path: "/news/add",
+  component: NewsCRU,
+  props: { type: "Create", apiCUD: api + "/news", editable: true },
+});
+
+routeArr.push({
+  title: "Edit News",
+  name: "edit-news",
+  path: "/news/edit/:id",
+  component: NewsCRU,
+  props: { type: "Edit", apiCUD: api + "/news", editable: true },
+});
+
+routeArr.push({
+  title: "Page Not Found",
+  name: "404",
+  path: "*",
+  component: {
+    template:
+      '<v-main><v-container style="height:100% !important;"><v-layout row class="text-xs-center" align-center justify-center><v-flex class="text-xs-center" style="height: 100vh;" id="card" d-flex xs12 mx-auto align-center justify-center>' +
+      '<span class="title pt-5">404 | Page Not Found</span>' +
+      "</v-flex></v-layout></v-container></v-main>",
+  },
 });
 
 let admRoute = new Router({
-    // mode: "history",
-    routes: routeArr,
+  // mode: "history",
+  routes: routeArr,
 });
 
 export default admRoute;

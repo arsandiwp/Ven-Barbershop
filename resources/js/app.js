@@ -502,6 +502,36 @@ const app = new Vue({
             },
           ],
         },
+
+        {
+          title: "Blogs",
+          icon: "mdi-file-document",
+          class: "menu",
+          hasChild: true,
+          group: "news",
+          show: true,
+          children: [
+            {
+              title: "News",
+              expandItem: true,
+              name: "news",
+              link: "/news",
+              class: "pl-0",
+              show: true,
+              click: function () {},
+            },
+          ],
+        },
+
+        {
+          title: "Service",
+          icon: "mdi-room-service-outline",
+          name: "service",
+          link: "/service",
+          class: "pl-0",
+          show: true,
+          click: function () {},
+        },
       ];
     },
 

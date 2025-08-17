@@ -1,0 +1,6 @@
+@function fluid($min, $max, $base: 1440) {
+  $diff: $max - $min;
+  $var: ($diff / 2) * 3;
+  $const: $max - $var;
+  @return calc(#{$const}px + (#{$var} * 100vw / #{$base}));
+}

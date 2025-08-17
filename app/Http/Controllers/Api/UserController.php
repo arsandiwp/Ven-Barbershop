@@ -182,6 +182,25 @@ class UserController extends Controller
         return $result;
     }
 
+    public function getBarberPaginate(Request $request)
+    {
+        $per_page = @$request->per_page;
+        $keyword = @$request->keyword;
+
+        $container = $this->userService->getWith()
+            ->where('role_id', 2); // hanya barber
+
+        if ($keyword) {
+            $container = $container->where(function ($q) use ($keyword) {
+                $q->where('name', "like", "%" . $keyword . "%");
+                $q->orWhere('email', "like", "%" . $keyword . "%");
+            });
+        }
+
+        return $container->paginate($per_page ?? 10);
+    }
+
+
     public function get($user_id)
     {
         $result = $this->userService->get($user_id);

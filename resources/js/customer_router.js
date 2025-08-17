@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import Home from "./components/customer/dashboard.vue";
+
 Vue.use(Router);
 
 var baseUrl = "";
@@ -23,7 +25,33 @@ else {
 const apiUrl = "/api/v1";
 const api = baseUrl + apiUrl;
 
+Vue.mixin({
+  data() {
+    return {
+      API: api,
+      nodeENV: nodeENV,
+    };
+  },
+});
+
 let routeArr = [];
+
+routeArr.push({ title: "Home", meta: { namePage: "Home" }, icon: "user", path: "/home", redirect: "/" });
+routeArr.push({
+    title: "Home",
+    meta: { namePage: "Home" },
+    icon: "user",
+    path: "/dashboard",
+    redirect: "/",
+});
+
+routeArr.push({
+    title: "Home",
+    meta: { namePage: "Home" },
+    path: "/",
+    component: Home,
+    name: 'home',    
+});
 
 routeArr.push({
     title: "Page Not Found",

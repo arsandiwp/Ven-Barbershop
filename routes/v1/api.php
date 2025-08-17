@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\PrivilegeController;
+use App\Http\Controllers\Api\ReservationController;
 use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\UserController;
 
 
@@ -17,9 +20,41 @@ Route::get('users-export', [UserController::class, 'export']);
 Route::post('users-import', [UserController::class, 'import']);
 Route::get('users-template', [UserController::class, 'downloadTemplate']);
 
+// Service
+Route::get('services/paginate', [ServiceController::class, 'getPaginate']);
+Route::get('services/{id}', [ServiceController::class, 'get']);
+
+Route::get('services', [ServiceController::class, 'listAllService']);
+Route::post('services', [ServiceController::class, 'create']);
+Route::post('services/{id}', [ServiceController::class, 'update']);
+Route::delete('services/{id}', [ServiceController::class, 'delete']);
+
+
+// News
+Route::get('news/paginate', [NewsController::class, 'getPaginate']);
+Route::get('news/{identifier}', [NewsController::class, 'getDetail']);
+
+Route::post('news', [NewsController::class, 'create']);
+Route::post('news/{id}', [NewsController::class, 'update']);
+Route::delete('news/{id}', [NewsController::class, 'delete']);
+
+
+// Reservation
+Route::get('reservations', [ReservationController::class, 'getPaginate']);
+Route::get('reservations/{id}', [ReservationController::class, 'get']);
+Route::get('reservations/available-slots', [ReservationController::class, 'availableSlots']);
+
+
+Route::get('reservations/get-all', [ReservationController::class, 'listAll']);
+Route::post('reservations', [ReservationController::class, 'create']);
+Route::put('reservations/{id}', [ReservationController::class, 'update']);
+Route::delete('reservations/{id}', [ReservationController::class, 'delete']);
+
+Route::get('user/paginate', [UserController::class, 'getPaginate']);
+Route::get('barbers/paginate', [UserController::class, 'getBarberPaginate']);
+
 
 Route::group(['middleware' => ['auth.redis', 'access.control']], function () {
-    Route::get('user/paginate', [UserController::class, 'getPaginate']);
     Route::get('user/{id}', [UserController::class, 'get']);
     Route::post('user', [UserController::class, 'create']);
     Route::post('user/{id}', [UserController::class, 'update']);
