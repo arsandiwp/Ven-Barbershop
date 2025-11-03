@@ -19,7 +19,7 @@
                     </a>
                 </v-col>
                 <v-col cols="7" id="container-button-navigation-cru-product">
-                    <v-btn color="#2C80C9" style="color: white" type="submit">
+                    <v-btn color="primary" style="color: white" type="submit">
                         Save
                     </v-btn>
                 </v-col>

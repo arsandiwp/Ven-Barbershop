@@ -21,7 +21,8 @@ class MailService
         if (App::environment() != "production") {
             $receivers = ["arsandiwp@gmail.com"];
         } else {
-            $receivers = ["arsandiwp@gmail.com"];
+            // $receivers = ["arsandiwp@gmail.com"];
+            $receivers = [$email];
         }
         return $receivers;
     }

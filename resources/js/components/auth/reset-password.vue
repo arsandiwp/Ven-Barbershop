@@ -90,6 +90,7 @@
                                     elevation="2"
                                     id="btn-login"
                                     type="submit"
+                                    color="primary"
                                     >Reset Password</v-btn
                                 >
                             </v-container>
@@ -169,6 +170,7 @@ export default {
                         );
 
                         this.redirectToSignIn();
+                        window.location.reload();
                     }
                 })
                 .catch((error) => {

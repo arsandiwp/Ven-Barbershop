@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\PrivilegeController;
 use App\Http\Controllers\Api\ReservationController;
@@ -21,6 +22,8 @@ Route::post('users-import', [UserController::class, 'import']);
 Route::get('users-template', [UserController::class, 'downloadTemplate']);
 
 // Service
+Route::get('services/data-list', [ServiceController::class, 'dataListService']);
+
 Route::get('services/paginate', [ServiceController::class, 'getPaginate']);
 Route::get('services/{id}', [ServiceController::class, 'get']);
 
@@ -40,18 +43,22 @@ Route::delete('news/{id}', [NewsController::class, 'delete']);
 
 
 // Reservation
-Route::get('reservations', [ReservationController::class, 'getPaginate']);
-Route::get('reservations/{id}', [ReservationController::class, 'get']);
-Route::get('reservations/available-slots', [ReservationController::class, 'availableSlots']);
-
-
 Route::get('reservations/get-all', [ReservationController::class, 'listAll']);
-Route::post('reservations', [ReservationController::class, 'create']);
+Route::post('reservations/available-slots', [ReservationController::class, 'availableSlots']);
+Route::get('reservations/paginate', [ReservationController::class, 'getPaginate']);
+Route::get('reservations/{id}', [ReservationController::class, 'get']);
+
+// Route::post('reservations', [ReservationController::class, 'create']);
 Route::put('reservations/{id}', [ReservationController::class, 'update']);
+Route::put('/reservations/{id}/status', [ReservationController::class, 'updateStatus']);
 Route::delete('reservations/{id}', [ReservationController::class, 'delete']);
 
 Route::get('user/paginate', [UserController::class, 'getPaginate']);
 Route::get('barbers/paginate', [UserController::class, 'getBarberPaginate']);
+Route::get('barbers', [UserController::class, 'dataListBarber']);
+
+Route::get('dashboard/summary', [DashboardController::class, 'summary']);
+Route::get('dashboard/trend', [DashboardController::class, 'reservationsTrend']);
 
 
 Route::group(['middleware' => ['auth.redis', 'access.control']], function () {
@@ -83,4 +90,8 @@ Route::group(['middleware' => ['auth.redis']], function () {
 
     Route::get('privileges', [PrivilegeController::class, 'dataList']);
 
+    Route::get('bookings', [ReservationController::class, 'customerBookings']);
+
+
+    Route::post('reservations', [ReservationController::class, 'create']);
 });

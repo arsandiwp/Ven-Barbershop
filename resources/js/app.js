@@ -532,6 +532,15 @@ const app = new Vue({
           show: true,
           click: function () {},
         },
+        {
+          title: "Reservations",
+          icon: "mdi-presentation",
+          name: "reservation",
+          link: "/reservation",
+          class: "pl-0",
+          show: true,
+          click: function () {},
+        },
       ];
     },
 

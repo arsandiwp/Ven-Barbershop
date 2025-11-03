@@ -24,6 +24,9 @@ import NewsList from "./components/news/news-list";
 import NewsCRU from "./components/news/news-cru";
 
 import PrivilegesList from "./components/privileges/privilege-list";
+import ReservationList from "./components/reservations/reservation-list.vue";
+import ReservationCru from "./components/reservations/reservation-cru.vue";
+import ReservationEdit from "./components/reservations/reservation-edit-copy.vue";
 
 Vue.use(Router);
 
@@ -225,6 +228,39 @@ routeArr.push({
   path: "/news/edit/:id",
   component: NewsCRU,
   props: { type: "Edit", apiCUD: api + "/news", editable: true },
+});
+
+routeArr.push({
+  title: "Reservation",
+  name: "reservation",
+  path: "/reservation",
+  component: ReservationList,
+  props: { api: api + "/reservations/paginate?", apiCUD: api + "/reservations" },
+});
+
+routeArr.push({
+  title: "Add Reservation",
+  name: "add-reservation",
+  path: "/reservation/add",
+  component: ReservationCru,
+  props: { api: api + "/reservations", editable: true },
+});
+
+routeArr.push({
+  title: "Edit Reservation",
+  name: "edit-reservation",
+  path: "/reservation/edit/:id",
+  component: ReservationEdit,
+  // props: { type: "Edit", apiCUD: api + "/services", editable: true },
+  props: { api: api + "/reservations", editable: true },
+});
+
+routeArr.push({
+  title: "Detail Reservation",
+  path: "/reservation/:id",
+  name: "detil-reservation",
+  component: ReservationCru,
+  props: { api: api + "/reservations", editable: false },
 });
 
 routeArr.push({

@@ -27,16 +27,12 @@ class NewsController extends Controller
     {
         $per_page = @$request->per_page;
         $keyword = @$request->keyword;
-        $filter = [];
-
-        // if ($request->category_id) {
-        //     $filter['category_id'] = $request->category_id;
-        // }
+        $filter = [];        
 
         if ($request->status) {
             $filter['status'] = $request->status;
             if ($filter['status'] == "All")
-                $filter['status'] = null;//remove filter if All is requested
+                $filter['status'] = null;
         } else {
             $filter['status'] = "Published";
         }
@@ -56,10 +52,8 @@ class NewsController extends Controller
     }
 
     public function create(Request $request)
-    {
-        // $user = (object) $request->_session;
-        $data = $request->only(Schema::getColumnListing('news'));
-        // $data['user_id'] = $user->id;
+    {        
+        $data = $request->only(Schema::getColumnListing('news'));        
         if ($data['custom_url'] == '') {
             $data['custom_url'] = null;
         } else {
@@ -69,16 +63,13 @@ class NewsController extends Controller
             }
         }
 
-        return DB::transaction(function () use ($data, $request) {
-            //make sure image_url not empty string
+        return DB::transaction(function () use ($data, $request) {            
             if ($data['image_url'] == '') {
                 $data['image_url'] = null;
-            }
-            //create news first to get its id
+            }            
             $queryResult = $this->mainService->create($data);
             $newlyNews = $this->mainService->find($queryResult);
-
-            //save main image if exist
+            
             if ($request->file('main_file') != null) {
                 $image = $request->file('main_file');
                 $file_path = "/news/" . $queryResult . "/image";
@@ -89,12 +80,10 @@ class NewsController extends Controller
                     'image_url' => $image_url,
                 ]);
             }
-
-            //save library images if exist
+            
             if ($request->arr_images) {
                 $arr_images = $request->arr_images;
-
-                //Add new images if contain file
+                
                 foreach ($arr_images as $img) {
                     if (\key_exists('file', $img) && !!$img['file']) {
                         if (is_file($img['file'])) {
@@ -121,11 +110,9 @@ class NewsController extends Controller
     }
 
     public function update($id, Request $request)
-    {
-        // $user = (object) $request->_session;
+    {        
 
-        $data = $request->only(Schema::getColumnListing('news'));
-        // $data['user_id'] = $user->id;
+        $data = $request->only(Schema::getColumnListing('news'));        
         if ($data['custom_url'] == '') {
             $data['custom_url'] = null;
         } else {
@@ -141,8 +128,7 @@ class NewsController extends Controller
             if ($request->arr_images) {
                 $arr_images = $request->arr_images;
                 $keep_ids = collect($request->arr_images)->pluck('id')->unique();
-                $query = NewsImage::where('news_id', $id)->whereNotIn('id', $keep_ids);
-                // Remove existing images if not included
+                $query = NewsImage::where('news_id', $id)->whereNotIn('id', $keep_ids);                
                 $removedImages = $query->get();
                 foreach ($removedImages as $img) {
                     if (!empty($img->image_url)) {
@@ -157,13 +143,11 @@ class NewsController extends Controller
                 }
 
                 $query->delete();
-
-                //Add new images if contain file
+                
                 foreach ($arr_images as $img) {
                     if (\key_exists('file', $img) && !!$img['file']) {
                         if (is_file($img['file'])) {
-                            $image = $img['file'];
-                            // return $img['file']->getClientOriginalName();
+                            $image = $img['file'];                            
                             $images_file_path = "/news/" . $exist->id . "/images";
 
                             $img['image_url'] = (string) $this->fileHandlerService->saveFileToStorage($image, $images_file_path);

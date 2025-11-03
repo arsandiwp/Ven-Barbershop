@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('barber_id');
-            $table->bigInteger('service_id');
+            $table->json('service_id')->nullable();
             $table->decimal('price', 12, 2)->default(0);
             $table->dateTime('reservation_time');
             $table->enum('status', ['Pending', 'Confirmed', 'Cancelled', 'Completed'])->default('Pending');

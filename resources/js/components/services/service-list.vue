@@ -202,7 +202,7 @@ export default {
             document.activeElement.blur();
             this.confirm(
                 "Delete Data",
-                "Are you sure you want to delete User [" + item.name + "]?",
+                "Are you sure you want to delete Service [" + item.name + "]?",
                 {
                     nohead: false,
                     color: "error",

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\CustomException;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use App\Services\FileHandlerService;
 use App\Services\ServiceService;
 use Illuminate\Http\Request;
@@ -22,21 +23,23 @@ class ServiceController extends Controller
         $this->fileHandlerService = $fileHandlerService;
     }
 
-    // public function listFaqCategories()
-    // {
-    //     $faqCategories = $this->serviceService->getAll();
+    public function dataListService()
+    {
+        $data = Service::get();
 
-    //     $faqCategories->transform(function ($faqCategories) {
-    //         return [
-    //             'id' => $faqCategories->id,
-    //             'value' => $faqCategories->id,
-    //             'text' => $faqCategories->name,
-    //             'photo' => $faqCategories->photo
-    //         ];
-    //     });
+        $data->transform(function ($dt) {
+            return [
+                'id' => $dt->id,
+                'value' => $dt->id,
+                'text' => $dt->name,
+                'price' => $dt->price,
+                'avatar' => $dt->photo,
+                'desc' => $dt->description,
+            ];
+        });
 
-    //     return $faqCategories;
-    // }
+        return $data;
+    }
 
     public function getPaginate(Request $request)
     {
@@ -53,7 +56,8 @@ class ServiceController extends Controller
         return $this->serviceService->getAllCategory($keyword);
     }
 
-    public function get($id) {
+    public function get($id)
+    {
         $data = $this->serviceService->get($id);
         return ResponseHelper::get($data);
     }
@@ -103,18 +107,12 @@ class ServiceController extends Controller
         return DB::transaction(function () use ($data, $id, $request) {
             $queryResult = $this->serviceService->update($id, $data);
 
-            return ResponseHelper::put($queryResult);
+            return ResponseHelper::put();
         });
     }
 
     public function delete($id)
     {
-        // $isCategoryUsed = $this->serviceService->isCategoryUsed($id);
-
-        // if ($isCategoryUsed) {
-        //     throw new CustomException("Cannot delete category as it is used in FAQs");
-        // }
-
         $this->serviceService->deleteCategoryItemStorage($id);
         $this->serviceService->delete($id);
         return ResponseHelper::delete();

@@ -1,7 +1,8 @@
 <template>
   <v-footer padless class="footer">
     <v-container>
-      <v-row justify="center" class="text-center">
+      <!-- Contact Us -->
+      <v-row justify="center" class="text-center mb-8">
         <v-col cols="12">
           <div class="footer-title">Contact Us</div>
           <div class="footer-subtitle">
@@ -10,39 +11,33 @@
         </v-col>
       </v-row>
 
-      <v-row justify="center" class="text-center mt-6">
-        <v-col cols="12" sm="3">
-          <v-icon color="goldenrod" size="28">mdi-map-marker</v-icon>
-          <div class="footer-label">ADDRESS</div>
-          <div class="footer-info">
-            Jl. Ringin Raya No.121, Ngringin, Condongcatur, Depok, Sleman, DIY
+      <!-- Info Grid -->
+      <v-row justify="center" class="text-center">
+        <v-col
+          v-for="(item, index) in footerItems"
+          :key="index"
+          cols="12"
+          sm="6"
+          md="3"
+          class="mb-6"
+        >
+          <div class="footer-item">
+            <v-icon color="amber darken-2" size="32" class="mb-2">{{
+              item.icon
+            }}</v-icon>
+            <div class="footer-label">{{ item.label }}</div>
+            <div class="footer-info">{{ item.info }}</div>
           </div>
-        </v-col>
-
-        <v-col cols="12" sm="3">
-          <v-icon color="goldenrod" size="28">mdi-email-outline</v-icon>
-          <div class="footer-label">EMAIL</div>
-          <div class="footer-info">info@company.com</div>
-        </v-col>
-
-        <v-col cols="12" sm="3">
-          <v-icon color="goldenrod" size="28">mdi-phone</v-icon>
-          <div class="footer-label">PHONE</div>
-          <div class="footer-info">085967279857</div>
-        </v-col>
-
-        <v-col cols="12" sm="3">
-          <v-icon color="goldenrod" size="28">mdi-clock-outline</v-icon>
-          <div class="footer-label">WORKING HOURS</div>
-          <div class="footer-info">10:00am - 10:00pm</div>
         </v-col>
       </v-row>
 
-      <v-divider class="mt-6" color="goldenrod"></v-divider>
+      <!-- Divider -->
+      <v-divider class="my-6" color="goldenrod"></v-divider>
 
-      <v-row justify="center" class="mt-4">
-        <v-col cols="12" class="text-center">
-          © Copyright Barbershop 2025
+      <!-- Copyright -->
+      <v-row justify="center">
+        <v-col cols="12" class="text-center copyright">
+          © {{ new Date().getFullYear() }} Barbershop. All Rights Reserved.
         </v-col>
       </v-row>
     </v-container>
@@ -52,6 +47,32 @@
 <script>
 export default {
   name: "AppFooter",
+  data() {
+    return {
+      footerItems: [
+        {
+          icon: "mdi-map-marker",
+          label: "ADDRESS",
+          info: "Jl. Ringin Raya No.121, Ngringin, Condongcatur, Depok, Sleman, DIY",
+        },
+        {
+          icon: "mdi-email-outline",
+          label: "EMAIL",
+          info: "info@company.com",
+        },
+        {
+          icon: "mdi-phone",
+          label: "PHONE",
+          info: "085967279857",
+        },
+        {
+          icon: "mdi-clock-outline",
+          label: "WORKING HOURS",
+          info: "10:00am - 10:00pm",
+        },
+      ],
+    };
+  },
 };
 </script>
 
@@ -60,36 +81,51 @@ export default {
 
 .footer {
   background-color: #fff;
-  padding-top: 40px;
-  padding-bottom: 20px;
+  padding: 60px 20px 30px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .footer-title {
-  font-size: fluid(14, 24);
-  font-weight: 500;
-  line-height: 150%;
-  letter-spacing: 0%;
-  color: black;
-  text-align: center;
+  font-size: fluid(18, 28);
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 8px;
 }
 
 .footer-subtitle {
-  font-size: fluid(10, 20);
+  font-size: fluid(12, 18);
   font-weight: 400;
-  line-height: 150%;
-  letter-spacing: 0%;
-  color: black;
-  text-align: center;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.footer-item {
+  transition: transform 0.3s ease, color 0.3s ease;
+  padding: 12px;
+  border-radius: 12px;
+
+  &:hover {
+    transform: translateY(-5px);
+    background: rgba(218, 165, 32, 0.05);
+  }
 }
 
 .footer-label {
   font-weight: 700;
-  margin-top: 8px;
+  font-size: 14px;
+  color: #222;
 }
 
 .footer-info {
-  font-size: 14px;
+  font-size: 13px;
   margin-top: 4px;
-  color: #333;
+  color: #555;
+  line-height: 1.5;
+}
+
+.copyright {
+  font-size: 12px;
+  color: #777;
 }
 </style>

@@ -6,6 +6,7 @@ use App\Exports\UsersExport;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Imports\UsersImport;
+use App\Models\User;
 use App\Services\AuthenticationService;
 use App\Services\FileHandlerService;
 use App\Services\MailService;
@@ -57,8 +58,7 @@ class UserController extends Controller
             throw new CustomException("Please select user role!");
         }
 
-        $data['role_id'] = $request->role_id;
-        $data['status'] = "Pending";
+        $data['role_id'] = $request->role_id;        
 
         return DB::transaction(function () use ($data) {
             $queryResultUser = $this->userService->create($data);
@@ -198,6 +198,24 @@ class UserController extends Controller
         }
 
         return $container->paginate($per_page ?? 10);
+    }
+
+    public function dataListBarber()
+    {
+        $data = User::where('role_id', 2) // hanya barber
+            ->get();
+
+        $data->transform(function ($dt) {
+            return [
+                'id' => $dt->id,
+                'value' => $dt->id,
+                'text' => $dt->name,
+                'avatar' => $dt->photo,
+                'email' => $dt->email,
+            ];
+        });
+
+        return $data;
     }
 
 

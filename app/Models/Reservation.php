@@ -12,6 +12,10 @@ class Reservation extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'service_id' => 'array',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

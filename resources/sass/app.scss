@@ -37,7 +37,7 @@
 // }
 
 *{
-    font-family: "Montserrat", sans-serif;
+    font-family: "Roboto";
     font-weight: 400;
     letter-spacing: 0px !important;
 }
@@ -132,7 +132,7 @@
 #btn-login {
     text-transform: unset;
     color: white;
-    background-color: black;
+    // background-color: black;
     height: 50px;
     border-radius: 5px;
 }
@@ -151,7 +151,8 @@
     color: #121212;
 }
 #sign-up {
-    color: black;
+    color: #ffa000;
+    font-weight: 700;
 }
 
 .text-bolder {
@@ -182,9 +183,6 @@
     font-weight: 700;
     color: #121212;
     text-align: center;
-}
-#sign-up {
-    color: black;
 }
 
 .text-bolder {

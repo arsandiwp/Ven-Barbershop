@@ -21,18 +21,54 @@ class ReservationService
         $this->service = $service;
     }
 
+    // public function getPaginate($perPage = null, $keyword = null)
+    // {
+    //     $query = $this->reservation->with(['user', 'barber', 'service']);
+
+    //     if ($keyword) {
+    //         $query->whereHas('service', function ($q) use ($keyword) {
+    //             $q->where('name', 'like', '%' . $keyword . '%');
+    //         });
+    //     }
+
+    //     return $query->paginate($perPage ?? self::DEFAULT_PER_PAGE);
+    // }
+
     public function getPaginate($perPage = null, $keyword = null)
     {
-        $query = $this->reservation->with(['user', 'barber', 'service']);
+        $query = $this->reservation->with(['user', 'barber']);
 
         if ($keyword) {
-            $query->whereHas('service', function ($q) use ($keyword) {
-                $q->where('name', 'like', '%' . $keyword . '%');
+            // filter keyword di service name
+            $query->where(function ($q) use ($keyword) {
+                $q->whereRaw("JSON_CONTAINS(service_id, '\"$keyword\"')");
             });
         }
 
-        return $query->paginate($perPage ?? self::DEFAULT_PER_PAGE);
+        $data = $query->paginate($perPage ?? self::DEFAULT_PER_PAGE);
+
+        // mapping service names
+        $data->getCollection()->transform(function ($reservation) {
+            // pastikan service_id array
+            $serviceIds = is_array($reservation->service_id)
+                ? $reservation->service_id
+                : json_decode($reservation->service_id, true);
+
+            $serviceIds = $serviceIds ?: []; // fallback kalau null
+
+            $services = Service::whereIn('id', $serviceIds)->pluck('name')->toArray();
+            $reservation->service_names = implode(', ', $services);
+
+            $dateTime = \Carbon\Carbon::parse($reservation->reservation_time);
+            $reservation->date = $dateTime->format('Y-m-d');
+            $reservation->time = $dateTime->format('H:i');
+
+            return $reservation;
+        });
+
+        return $data;
     }
+
 
     public function getAll()
     {
