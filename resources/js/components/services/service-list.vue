@@ -162,6 +162,7 @@ export default {
                 {
                     text: "Action",
                     value: "actions",
+                    width: 80,
                     sortable: false,
                     align: "center",
                 },

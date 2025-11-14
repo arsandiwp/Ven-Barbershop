@@ -111,7 +111,7 @@ export default {
                 // { text: "Header", value: "header", align: "left", sortable: false},
                 // { text: "Admin", parent:"user", field:'name', value: "parent", align: "center", sortable: false},
                 { text: "Status", value: "status", align: "center", sortable: false},
-                { text: "Action", value: "actions", align: "center", sortable: false },
+                { text: "Action", value: "actions", align: "center", width: 80, sortable: false },
             ];
         },
 

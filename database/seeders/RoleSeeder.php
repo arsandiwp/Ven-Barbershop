@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
             ),
             array(
                 'id' => 2,
-                'name' => 'Admin',
+                'name' => 'Barber',
                 'parent_id' => NULL,
                 'score' => NULL,
                 'created_at' => now(),

@@ -11,7 +11,8 @@ Your reservation has been **{{ $action }}**.
 - **Time:** {{ \Carbon\Carbon::parse($reservation->reservation_time)->format('H:i') }}
 - **Status:** {{ $reservation->status }}
 
-@component('mail::button', ['url' => url('/reservations/'.$reservation->id)])
+{{-- @component('mail::button', ['url' => url('/reservations/'.$reservation->id)]) --}}
+@component('mail::button', ['url' => url('/profile')])
 View Reservation
 @endcomponent
 

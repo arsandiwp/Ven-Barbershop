@@ -26,10 +26,10 @@ class UserSeeder extends Seeder
             array(
                 'id' => 1,
                 'name' => 'Super Admin',
-                'phone' => '+6282293429191',
+                'phone' => '+6282293429168',
                 'address' => 'Yogyakarta, Kota Yogyakarta, Daerah Istimewa Yogyakarta',
-                'photo' => 'https://static1.squarespace.com/static/59d2f85703596eacb7278fd7/t/5a9ea054ec212d0cc09dd25a/1520345467954/Michelle+Foo+profile-circle.png',
-                'email' => 'super@solen.id',
+                'photo' => 'https://media.istockphoto.com/id/1192884194/id/vektor/admin-masuk-pada-ikon-laptop-vektor-stok.jpg?s=612x612&w=0&k=20&c=tkPYtuUM7Mvw2p2iHtv-BjSTadq9mdF1WemBKlooMJs=',
+                'email' => 'super@admin.id',
                 'password' => $this->userService->makePassword(),
                 'status' => 'Active',
                 'role_id' => 1,
@@ -39,11 +39,11 @@ class UserSeeder extends Seeder
             ),
             array(
                 'id' => 2,
-                'name' => 'Admin',
-                'phone' => '+6282293429192',
+                'name' => 'Nikol Yafet Manto',
+                'phone' => '',
                 'address' => 'Yogyakarta, Kota Yogyakarta, Daerah Istimewa Yogyakarta',
-                'photo' => 'https://static1.squarespace.com/static/59d2f85703596eacb7278fd7/t/5a9ea054ec212d0cc09dd25a/1520345467954/Michelle+Foo+profile-circle.png',
-                'email' => 'admin@solen.id',
+                'photo' => 'https://www.1stformationsblog.co.uk/wp-content/uploads/2023/09/Shutterstock_2302169201-1024x512.jpg',
+                'email' => 'nikol@gmail.com',
                 'password' => $this->userService->makePassword(),
                 'status' => 'Active',
                 'role_id' => 2,
@@ -51,17 +51,6 @@ class UserSeeder extends Seeder
                 'updated_at' => NULL,
                 'deleted_at' => NULL,
             ),
-            // array(
-            //     'id' => 3,
-            //     'name' => 'User',
-            //     'email' => 'user@solen.id',
-            //     'password' => $this->userService->makePassword(),
-            //     'status' => 'Pending',
-            //     'role_id' => 3,
-            //     'created_at' => now(),
-            //     'updated_at' => NULL,
-            //     'deleted_at' => NULL,
-            // ),
         ));
     }
 }
