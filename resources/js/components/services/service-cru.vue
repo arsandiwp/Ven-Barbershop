@@ -48,7 +48,6 @@
                                 id="name"
                                 placeholder="Enter Name"
                                 outlined
-                                type="text"
                                 v-model="model.name"
                                 :rules="nameRules"
                                 :readonly="!editable"
@@ -56,7 +55,7 @@
                             ></v-text-field>
                         </v-col>
 
-                       <v-col cols="12" md="6">
+                        <v-col cols="12" md="6">
                             <label for="status" class="text-label"
                                 >Status*</label
                             >
@@ -71,7 +70,40 @@
                                 dense
                             ></v-select>
                         </v-col>
-                    </v-row>                    
+                    </v-row>
+
+                    <!-- NEW FIELDS: DURATION & PRICE -->
+                    <v-row>
+                        <v-col cols="12" md="6">
+                            <label for="duration" class="text-label"
+                                >Duration*</label
+                            >
+                            <v-text-field
+                                id="duration"
+                                placeholder="Enter Duration (ex: 60 Minutes)"
+                                outlined
+                                type="text"
+                                v-model="model.duration"
+                                :readonly="!editable"
+                                dense
+                            ></v-text-field>
+                        </v-col>
+
+                        <v-col cols="12" md="6">
+                            <label for="price" class="text-label"
+                                >Price*</label
+                            >
+                            <v-text-field
+                                id="price"
+                                placeholder="Enter Price"
+                                outlined
+                                type="number"
+                                v-model="model.price"
+                                :readonly="!editable"
+                                dense
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
 
                     <v-row>
                         <v-col cols="12">
@@ -91,7 +123,7 @@
                             ></v-textarea>
                         </v-col>
                     </v-row>
-                    <!-- Form -->
+
                     <div class="text-center mt-10" v-if="editable">
                         <v-btn
                             class="elevation-1"
@@ -112,7 +144,6 @@
 import Avatar from "vue-avatar-component";
 import ImageInput from "../image-input.vue";
 import Loading from "../loading-dialog";
-import Vue from "vue";
 
 export default {
     name: "cru-service",
@@ -135,39 +166,27 @@ export default {
         return {
             id: null,
             valid: true,
+
             model: {
-                // id: null,
-                // photo: "",
-                // photo: "",
                 name: "",
-                // email: "",
-                // phone: "",
-                // position: "",
-                // division: "",
-                // status: "Pending",
-                // address: "",
-                // role_id: 0,
+                description: "",
+                status: "",
+                duration: "",
+                price: "",
             },
+
             avatar: {
                 photo: null,
                 editable: this.editable,
                 imageURL: null,
             },
-            roles: [],
+
             items: [
                 { text: "Published", value: "Published" },
                 { text: "Draft", value: "Draft" },
             ],
-            nameRules: [
-                (v) => !!v || "Name is required",
-                // (v) => v.length <= 10 || "Name must be less than 10 characters",
-            ],
-            // emailRules: [
-            //     (v) => !!v || "E-mail is required",
-            //     (v) => /.+@.+/.test(v) || "E-mail must be valid",
-            // ],
-            loading: false,
-            userAvatarColor: "white",
+
+            nameRules: [(v) => !!v || "Name is required"],
         };
     },
 
@@ -176,64 +195,32 @@ export default {
     },
 
     watch: {
-        "$route.path": function (path) {
-            this.devLog("watching change");
+        "$route.path": function () {
             this.initData();
         },
-
-        // "model.phone": function (newValue, oldValue) {
-        //     if (newValue !== null && newValue !== undefined) {
-        //         const result = newValue.replace(/[^0-9+]/g, "");
-        //         Vue.nextTick(() => (this.model.phone = result));
-        //     }
-        // },
-    },
-
-    mounted() {
-        // this.getRoles()
-        //     .then((response) => {
-        //         this.devLog(
-        //             "Hasil List Roles: " + JSON.stringify(response.data)
-        //         );
-        //         if (response.status == 200) {
-        //             if (!!response.data && response.data.length > 0) {
-        //                 this.roles = response.data;
-        //                 this.devLog("ini roleee", this.roles);
-        //             } else {
-        //                 this.roles = [];
-        //             }
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         result = [];
-        //         if (!!err.response) {
-        //             this.showErr(err.response, "Failed");
-        //         } else {
-        //             this.showErr({ status: "Code Error", statusText: err });
-        //         }
-        //     });
     },
 
     methods: {
         initData() {
             this.id = this.$route.params.id;
-            this.nav_path = this.$route.path.split("/");
-            var last = this.nav_path.length - 1;
-            for (var i = 1; i <= last; i++) {
-                var xpath = "/" + this.nav_path[i];
-                if (this.nav_path[i] == "add") {
+
+            let path = this.$route.path.split("/");
+            let last = path.length - 1;
+
+            for (let i = 1; i <= last; i++) {
+                if (path[i] === "add") {
                     this.editable = true;
                     this.nav_title = "add";
                     this.initAvatar();
-                } else if (this.nav_path[i] == "edit") {
+                } else if (path[i] === "edit") {
                     this.editable = true;
                     this.nav_title = "edit";
                 } else {
-                    this.nav_title = "detil";
+                    this.nav_title = "detail";
                 }
             }
+
             if (!isNaN(this.id)) {
-                this.devLog("ada id");
                 this.initAxio();
             }
         },
@@ -244,82 +231,51 @@ export default {
                     headers: { Authorization: localStorage.token },
                 })
                 .then((response) => {
-                    if (response.status == 200) {
-                        console.log("-=-=-=-=-=-=-=");
-                        console.log(response)
-                        this.devLog(response.data.data);
-                        // if(response.data.length > 0){
-                        this.devLog("get data");
+                    if (response.status === 200) {
                         this.model = response.data.data;
-                        this.devLog("ini member", this.model);
                         this.initAvatar();
-                        // }else{
-                        //     this.model.not_found = true;
-                        // }
-                        // this.model.ready = true;
-                    } else {
-                        alert(response);
-                        this.showErr(response);
                     }
                 })
                 .catch((err) => {
-                    if (!!err.response) {
-                        this.showErr(err.response, "Failed");
-                    } else {
-                        this.showErr({ status: "Code Error", statusText: err });
-                    }
+                    this.showErr(err.response ?? err);
                 });
         },
 
         initAvatar() {
-            this.model.editable = this.editable;
             this.avatar = {
                 editable: this.editable,
                 imageURL: this.model.photo,
-                formData: null,
                 imgFile: null,
             };
         },
 
         validateForm() {
-            this.devLog("validating");
             if (this.$refs.form.validate()) {
                 this.submitForm();
             } else {
-                let snackbarOpt = {
-                    text: "Please check some Field!!",
-                    type: "error",
-                };
-                this.simpleSnackbar(snackbarOpt.text, snackbarOpt.type);
+                this.simpleSnackbar("Please check some Field!!", "error");
                 window.scrollTo(0, 0);
             }
         },
 
         submitForm() {
             this.model.photo = this.avatar.imgFile;
-            switch (this.nav_title) {
-                case "add":
-                    this.postData();
-                    break;
 
-                default:
-                    this.putData();
-                    break;
-            }
+            if (this.nav_title === "add") this.postData();
+            else this.putData();
         },
 
         postData() {
             this.LOADING(true);
 
             let bodyPost = new FormData();
-            bodyPost.append("name", this.model.name);            
-            if (this.model.photo) {
-                bodyPost.append("photo", this.model.photo[0]);
-            }
-            bodyPost.append("description", this.model.description);            
-            bodyPost.append("status", this.model.status);            
+            bodyPost.append("name", this.model.name);
+            if (this.model.photo) bodyPost.append("photo", this.model.photo[0]);
 
-            this.devLog(this.model);
+            bodyPost.append("description", this.model.description);
+            bodyPost.append("status", this.model.status);
+            bodyPost.append("duration", this.model.duration);
+            bodyPost.append("price", this.model.price);
 
             axios
                 .post(this.api, bodyPost, {
@@ -329,28 +285,16 @@ export default {
                     },
                 })
                 .then((response) => {
-                    this.devLog(JSON.stringify(response));
-                    this.devLog(response.status);
                     if (response.status == 201) {
                         this.$router.replace({
                             name: "service",
                             params: {
                                 snackbarOpt: {
-                                    text: "Success! Data added!!",
+                                    text: "Success! Data added!",
                                     type: "success",
                                 },
                             },
                         });
-                    } else {
-                        alert(response);
-                        this.showErr(response);
-                    }
-                })
-                .catch((err) => {
-                    if (!!err.response) {
-                        this.showErr(err.response, "Failed");
-                    } else {
-                        this.showErr({ status: "Code Error", statusText: err });
                     }
                 })
                 .finally(() => {
@@ -362,16 +306,14 @@ export default {
             this.LOADING(true);
 
             let bodyPost = new FormData();
-            bodyPost.append("name", this.model.name);            
-            if (this.model.photo) {
-                bodyPost.append("photo", this.model.photo[0]);
-            }
-            bodyPost.append("status", this.model.status);          
-            if (this.model.description) {
-                bodyPost.append("description", this.model.description);
-            }            
+            bodyPost.append("name", this.model.name);
+            if (this.model.photo) bodyPost.append("photo", this.model.photo[0]);
 
-            this.devLog(this.model);
+            bodyPost.append("description", this.model.description);
+            bodyPost.append("status", this.model.status);
+            bodyPost.append("duration", this.model.duration);
+            bodyPost.append("price", this.model.price);
+
             axios
                 .post(this.api + "/" + this.id, bodyPost, {
                     headers: {
@@ -380,34 +322,16 @@ export default {
                     },
                 })
                 .then((response) => {
-                    this.devLog(JSON.stringify(response));
-                    if (response.status == 202) {
+                    if (response.status === 202) {
                         this.$router.replace({
                             name: "service",
                             params: {
                                 snackbarOpt: {
-                                    text: "Success! Data edited!!",
+                                    text: "Success! Data updated!",
                                     type: "success",
                                 },
                             },
                         });
-
-                        let adminLogin = JSON.parse(
-                            localStorage.getItem("adminLogin")
-                        );
-                        if (this.model.id == adminLogin.id) {
-                            this.updateadminLogin(this.model.id);
-                        }
-                    } else {
-                        alert(JSON.stringify(response));
-                        this.showErr(response);
-                    }
-                })
-                .catch((err) => {
-                    if (!!err.response) {
-                        this.showErr(err.response, "Failed");
-                    } else {
-                        this.showErr({ status: "Code Error", statusText: err });
                     }
                 })
                 .finally(() => {

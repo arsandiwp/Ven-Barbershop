@@ -277,12 +277,19 @@ export default {
       this.step = 4;
     },
     async submitReservation() {
-      await axios.post("http://127.0.0.1:8000/api/v1/reservations", {
-        barber_id: this.selectedBarber,
-        service_id: this.selectedServices,
-        reservation_time: this.selectedDate + " " + this.selectedTime + ":00",
-      });
-      alert("Reservasi berhasil dibuat!");
+      await axios.post(
+        "http://127.0.0.1:8000/api/v1/reservations",
+        {
+          barber_id: this.selectedBarber,
+          service_id: this.selectedServices,
+          reservation_time: this.selectedDate + " " + this.selectedTime + ":00",
+        },
+        {
+          headers: { Authorization: localStorage.token },
+        }
+      );
+      // alert("Reservasi berhasil dibuat!");
+      this.$router.push('/');
     },
   },
   mounted() {
