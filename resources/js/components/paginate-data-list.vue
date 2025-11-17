@@ -329,7 +329,11 @@ export default {
         url = url + "&region=" + this.list.selectRegion;
       }
 
-      if (this.list.filter_status && this.list.filter_status != "All") {
+      // if (this.list.filter_status && this.list.filter_status != "All") {
+      //   url = url + "&status=" + this.list.filter_status;
+      // }
+
+      if (this.list.filter_status) {
         url = url + "&status=" + this.list.filter_status;
       }
 
@@ -374,6 +378,10 @@ export default {
   },
   //this will trigger in the onReady State
   mounted() {
+    if (!this.list.filter_status) {
+      this.list.filter_status = "All"; // default All
+    }
+
     this.readDataFromAPI();
   },
 };

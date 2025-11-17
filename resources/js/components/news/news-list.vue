@@ -113,6 +113,8 @@ export default {
                 { text: "Status", value: "status", align: "center", sortable: false},
                 { text: "Action", value: "actions", align: "center", width: 80, sortable: false },
             ];
+
+            this.list.filter_status = "All";
         },
 
         openPreview(item){
