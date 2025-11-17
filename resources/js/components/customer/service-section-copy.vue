@@ -16,7 +16,7 @@
     <v-divider style="width: 90%" color="goldenrod" class="mx-auto"></v-divider>
 
     <div class="explore-container">
-      <v-row>
+      <v-row align="center" justify="center">
         <v-col
           v-for="(service, index) in services"
           :key="index"
@@ -78,6 +78,7 @@ export default {
           params: {
             per_page: this.perPage,
             page: this.page,
+            status: "Published",
           },
         })
         .then((response) => {

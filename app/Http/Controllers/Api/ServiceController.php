@@ -27,6 +27,8 @@ class ServiceController extends Controller
     {
         $data = Service::get();
 
+        $data = Service::where('status', 'Published')->get();
+
         $data->transform(function ($dt) {
             return [
                 'id' => $dt->id,
@@ -45,7 +47,9 @@ class ServiceController extends Controller
     {
         $per_page = @$request->per_page;
         $keyword = @$request->keyword;
-        $result = $this->serviceService->getPaginate($per_page, $keyword);
+        $status   = @$request->status;
+
+        $result = $this->serviceService->getPaginate($per_page, $keyword, $status);
 
         return $result;
     }

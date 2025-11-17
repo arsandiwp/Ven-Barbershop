@@ -19,13 +19,17 @@ class ServiceService
         $this->fileHandlerService = $fileHandlerService;
     }
 
-     public function getPaginate($per_page, $keyword)
+    public function getPaginate($per_page, $keyword, $status = null)
     {
         $container = $this->service;
-        if ($keyword) {
+        if (!empty($status)) {
+            $container = $container->where('status', $status);
+        }
+
+        if (!empty($keyword)) {
             $container = $container->where(function ($q) use ($keyword) {
-                $q->where('name', "like", "%" . $keyword . "%");
-                $q->orWhere('description', "like", "%" . $keyword . "%");
+                $q->where('name', 'like', "%{$keyword}%")
+                    ->orWhere('description', 'like', "%{$keyword}%");
             });
         }
         return $container->paginate($per_page ?? self::DEFAULT_PER_PAGE);
@@ -36,7 +40,7 @@ class ServiceService
         return $this->service::all();
     }
 
-    public function getAllCategory( $keyword)
+    public function getAllCategory($keyword)
     {
         $container = $this->service;
         if ($keyword) {

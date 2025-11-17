@@ -289,7 +289,7 @@ export default {
         }
       );
       // alert("Reservasi berhasil dibuat!");
-      this.$router.push('/');
+      this.$router.push("/");
     },
   },
   mounted() {

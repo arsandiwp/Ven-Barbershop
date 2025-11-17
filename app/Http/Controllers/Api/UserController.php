@@ -58,7 +58,7 @@ class UserController extends Controller
             throw new CustomException("Please select user role!");
         }
 
-        $data['role_id'] = $request->role_id;        
+        $data['role_id'] = $request->role_id;
 
         return DB::transaction(function () use ($data) {
             $queryResultUser = $this->userService->create($data);
@@ -186,11 +186,16 @@ class UserController extends Controller
     {
         $per_page = @$request->per_page;
         $keyword = @$request->keyword;
+        $status = $request->status;
 
         $container = $this->userService->getWith()
             ->where('role_id', 2); // hanya barber
 
-        if ($keyword) {
+        if (!empty($status)) {
+            $container = $container->where('status', $status);
+        }
+
+        if (!empty($keyword)) {
             $container = $container->where(function ($q) use ($keyword) {
                 $q->where('name', "like", "%" . $keyword . "%");
                 $q->orWhere('email', "like", "%" . $keyword . "%");
@@ -203,6 +208,7 @@ class UserController extends Controller
     public function dataListBarber()
     {
         $data = User::where('role_id', 2) // hanya barber
+            ->where('status', 'Active') // hanya yang status Active
             ->get();
 
         $data->transform(function ($dt) {

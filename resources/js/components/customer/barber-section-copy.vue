@@ -85,6 +85,7 @@ export default {
           params: {
             per_page: this.perPage,
             page: this.page,
+            status: "Active",
           },
         });
 
