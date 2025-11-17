@@ -377,11 +377,7 @@ export default {
     },
   },
   //this will trigger in the onReady State
-  mounted() {
-    if (!this.list.filter_status) {
-      this.list.filter_status = "All"; // default All
-    }
-
+  mounted() {    
     this.readDataFromAPI();
   },
 };
