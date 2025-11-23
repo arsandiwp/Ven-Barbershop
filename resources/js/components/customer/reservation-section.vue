@@ -4,28 +4,28 @@
       <v-col cols="12" md="10" lg="8">
         <!-- Hero -->
         <div class="reservation-hero text-center py-8 px-4 mb-6">
-          <h2 class="text-h4 font-weight-bold mb-2">✂️ Create Reservation</h2>
+          <h2 class="text-h4 font-weight-bold mb-2">✂️ Buat Reservasi</h2>
           <p class="grey--text">
-            Choose the barber, service, and time that suits you
+            Pilih tukang cukur, layanan, dan waktu yang sesuai dengan Anda
           </p>
         </div>
 
         <v-stepper v-model="step" class="rounded-2xl elevation-3 glass-effect">
           <v-stepper-header>
             <v-stepper-step :complete="step > 1" color="amber darken-2" step="1"
-              >Choose Barber</v-stepper-step
+              >Pilih Tukang Cukur</v-stepper-step
             >
             <v-divider></v-divider>
             <v-stepper-step :complete="step > 2" color="amber darken-2" step="2"
-              >Choose Service</v-stepper-step
+              >Pilih Layanan</v-stepper-step
             >
             <v-divider></v-divider>
             <v-stepper-step :complete="step > 3" color="amber darken-2" step="3"
-              >Choose Date</v-stepper-step
+              >Pilih Tanggal</v-stepper-step
             >
             <v-divider></v-divider>
             <v-stepper-step :complete="step > 4" color="amber darken-2" step="4"
-              >Choose Time</v-stepper-step
+              >Pilih Waktu</v-stepper-step
             >
           </v-stepper-header>
 
@@ -34,7 +34,7 @@
             <!-- Step 1: Barber -->
             <v-stepper-content step="1">
               <h3 class="mb-4 font-weight-medium">
-                Who is your barber of choice?
+                Siapa tukang cukur pilihan Anda?
               </h3>
               <v-row dense>
                 <v-col
@@ -76,7 +76,7 @@
                   rounded
                   :disabled="!selectedBarber"
                   @click="step = 2"
-                  >Next</v-btn
+                  >Lanjut</v-btn
                 >
               </div>
             </v-stepper-content>
@@ -84,7 +84,7 @@
             <!-- Step 2: Services -->
             <v-stepper-content step="2">
               <h3 class="mb-4 font-weight-medium">
-                Select the service you want?
+                Pilih layanan yang Anda inginkan?
               </h3>
               <v-row dense>
                 <v-col
@@ -130,13 +130,13 @@
               </v-row>
 
               <div class="mt-6 d-flex justify-space-between">
-                <v-btn text rounded @click="step = 1">Back</v-btn>
+                <v-btn text rounded @click="step = 1">Kembali</v-btn>
                 <v-btn
                   color="primary"
                   rounded
                   :disabled="!selectedServices.length"
                   @click="step = 3"
-                  >Next</v-btn
+                  >Lanjut</v-btn
                 >
               </div>
             </v-stepper-content>
@@ -144,7 +144,7 @@
             <!-- Step 3: Date -->
             <v-stepper-content step="3">
               <h3 class="mb-4 font-weight-medium">
-                When would you like to get a haircut?
+                Kapan Anda ingin potong rambut?
               </h3>
               <v-menu
                 v-model="menuDate"
@@ -156,7 +156,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     v-model="selectedDate"
-                    label="Select Date"
+                    label="Pilih Tanggal"
                     prepend-icon="mdi-calendar"
                     readonly
                     outlined
@@ -173,20 +173,22 @@
               </v-menu>
 
               <div class="mt-6 d-flex justify-space-between">
-                <v-btn text rounded @click="step = 2">Back</v-btn>
+                <v-btn text rounded @click="step = 2">Kembali</v-btn>
                 <v-btn
                   color="primary"
                   rounded
                   :disabled="!selectedDate"
                   @click="fetchAvailableSlots"
-                  >Next</v-btn
+                  >Lanjut</v-btn
                 >
               </div>
             </v-stepper-content>
 
             <!-- Step 4: Time -->
             <v-stepper-content step="4">
-              <h3 class="mb-4 font-weight-medium">Select an available time?</h3>
+              <h3 class="mb-4 font-weight-medium">
+                Pilih waktu yang tersedia?
+              </h3>
               <v-row dense>
                 <v-col
                   v-for="time in availableSlots"
@@ -207,13 +209,13 @@
               </v-row>
 
               <div class="mt-6 d-flex justify-space-between">
-                <v-btn text rounded @click="step = 3">Back</v-btn>
+                <v-btn text rounded @click="step = 3">Kembali</v-btn>
                 <v-btn
                   color="primary"
                   rounded
                   :disabled="!selectedTime"
                   @click="submitReservation"
-                  >Create Reservation</v-btn
+                  >Buat Reservasi</v-btn
                 >
               </div>
             </v-stepper-content>

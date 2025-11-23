@@ -3,11 +3,11 @@
     <div class="container">
       <v-row>
         <v-col cols="12">
-          <div class="title-text">Our Services</div>
+          <div class="title-text">Layanan Kami</div>
           <div class="subtitle-text">
-            Our services are designed to provide you with the best grooming
-            experience. From classic cuts to modern styles, we have something
-            for everyone.
+            Layanan kami dirancang untuk memberikan Anda pengalaman perawatan
+            terbaik. Dari potongan klasik hingga gaya modern, kami punya sesuatu
+            untuk semua orang.
           </div>
         </v-col>
       </v-row>

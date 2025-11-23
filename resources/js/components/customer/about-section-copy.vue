@@ -4,15 +4,19 @@
       <!-- Title -->
       <v-row justify="center" class="text-center">
         <v-col cols="12" md="8">
-          <h2 class="about-title">About Us</h2>
+          <h2 class="about-title">Tentang Kami</h2>
           <p class="about-subtitle">
-            More Than Just a Haircut. It’s a Statement
+            Lebih dari Sekadar Potongan Rambut. Ini Sebuah Pernyataan
           </p>
           <!-- <v-divider class="about-divider mx-auto my-6"></v-divider> -->
         </v-col>
       </v-row>
 
-      <v-divider style="width: 90%" color="goldenrod" class="mx-auto mb-8"></v-divider>
+      <v-divider
+        style="width: 90%"
+        color="goldenrod"
+        class="mx-auto mb-8"
+      ></v-divider>
 
       <!-- Content with Image -->
       <v-row align="center" justify="center">
@@ -29,33 +33,36 @@
         <!-- Right: Text -->
         <v-col cols="12" md="7">
           <p class="about-text">
-            At <strong>Ven Barbershop</strong>, we believe that a haircut is not
-            just a style, but also an expression of oneself. Since our
-            establishment, we have been committed to providing high-quality
-            barbering services with a touch of professionalism and warmth.
+            Di <strong>Ven Barbershop</strong>, Kami percaya bahwa potong rambut
+            bukan hanya sekadar gaya, tetapi juga ekspresi diri. Sejak berdiri,
+            kami berkomitmen untuk menyediakan layanan pangkas rambut
+            berkualitas tinggi dengan sentuhan profesionalisme dan kehangatan.
           </p>
           <p class="about-text">
-            Our team of barbers consists of experts who always keep up with the
-            latest trends, while still prioritizing the comfort and preferences
-            of each customer. From classic cuts to modern styles, every detail
-            is taken care of to deliver the best results.
+            Tim tukang cukur kami terdiri dari para ahli yang selalu mengikuti
+            tren terbaru, dengan tetap mengutamakan kenyamanan dan preferensi
+            setiap pelanggan. Dari potongan klasik hingga gaya modern, setiap
+            detail diperhatikan untuk memberikan hasil terbaik.
           </p>
 
           <!-- Quote Box -->
           <div class="quote-box my-6">
-            ✂️ <em>"A good haircut is the foundation of confidence."</em>
+            ✂️
+            <em
+              >"Potongan rambut yang bagus adalah fondasi kepercayaan diri."</em
+            >
           </div>
 
           <p class="about-text">
-            In addition to traditional haircuts and shaves, Ven Barbershop also
-            offers comprehensive hair care and grooming services, turning your
-            experience into more than just a hair care session—it’s a moment of
-            relaxation and self-care.
+            Selain potong rambut dan cukur tradisional, Ven Barbershop juga
+            menawarkan layanan perawatan dan penataan rambut yang komprehensif,
+            menjadikan pengalaman Anda lebih dari sekadar sesi perawatan
+            rambut—ini adalah momen relaksasi dan perawatan diri.
           </p>
           <p class="about-text">
-            We are proud to be a place where every customer can feel confident
-            in their appearance while enjoying the warm and friendly atmosphere
-            that makes every visit memorable.
+            Kami bangga menjadi tempat di mana setiap pelanggan dapat merasa
+            percaya diri dengan penampilan mereka sambil menikmati suasana
+            hangat dan ramah yang membuat setiap kunjungan berkesan.
           </p>
         </v-col>
       </v-row>
@@ -75,7 +82,6 @@ export default {
   background-color: #fafafa;
   position: relative;
   background: url("https://www.transparenttextures.com/patterns/white-wall-3.png");
-
 }
 
 /* Decorative subtle pattern background */

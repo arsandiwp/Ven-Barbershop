@@ -4,9 +4,10 @@
       <!-- Contact Us -->
       <v-row justify="center" class="text-center mb-8">
         <v-col cols="12">
-          <div class="footer-title">Contact Us</div>
+          <div class="footer-title">Hubungi kami</div>
           <div class="footer-subtitle">
-            We are here to help you with any questions or concerns you may have.
+            Kami hadir untuk membantu Anda dengan pertanyaan atau masalah apa
+            pun yang mungkin Anda miliki.
           </div>
         </v-col>
       </v-row>
@@ -37,7 +38,8 @@
       <!-- Copyright -->
       <v-row justify="center">
         <v-col cols="12" class="text-center copyright">
-          © {{ new Date().getFullYear() }} Barbershop. All Rights Reserved.
+          © {{ new Date().getFullYear() }} Pangkas Rambut. Hak Cipta Dilindungi
+          Undang-Undang.
         </v-col>
       </v-row>
     </v-container>
@@ -52,7 +54,7 @@ export default {
       footerItems: [
         {
           icon: "mdi-map-marker",
-          label: "ADDRESS",
+          label: "ALAMAT",
           info: "Jl. Ringin Raya No.121, Ngringin, Condongcatur, Depok, Sleman, DIY",
         },
         {
@@ -62,13 +64,13 @@ export default {
         },
         {
           icon: "mdi-phone",
-          label: "PHONE",
+          label: "TELEPON",
           info: "085967279857",
         },
         {
           icon: "mdi-clock-outline",
-          label: "WORKING HOURS",
-          info: "10:00am - 10:00pm",
+          label: "JAM KERJA",
+          info: "10:00 - 22:00",
         },
       ],
     };

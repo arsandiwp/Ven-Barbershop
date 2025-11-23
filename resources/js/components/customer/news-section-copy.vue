@@ -4,10 +4,10 @@
     <div class="container">
       <v-row>
         <v-col cols="12">
-          <div class="title-text">Our News</div>
+          <div class="title-text">Berita Kami</div>
           <div class="subtitle-text">
-            Stay updated with the latest news and articles from our barbershop.
-            From grooming tips to style trends, we have it all covered.
+            Ikuti terus berita dan artikel terbaru dari barbershop kami. Dari
+            tips perawatan hingga tren gaya, semuanya ada di sini.
           </div>
         </v-col>
       </v-row>

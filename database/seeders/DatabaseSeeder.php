@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PrivilegeSeeder::class);
         $this->call(RolePrevilegeSeeder::class);
         $this->call(ServiceSeeder::class);
-        // $this->call(NewsSeeder::class);
-        // $this->call(NewsImageSeeder::class);
+        $this->call(NewsSeeder::class);
+        $this->call(NewsImageSeeder::class);
     }
 }

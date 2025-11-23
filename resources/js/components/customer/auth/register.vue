@@ -23,18 +23,18 @@
       >
         <v-container fluid id="container-box-main-login">
           <v-container fluid id="container-header-login">
-            <h1>Create New Account</h1>
-            <p>Get your Ven Barbershop account now!</p>
+            <h1>Buat Akun Baru</h1>
+            <p>Dapatkan akun Ven Barbershop Anda sekarang!</p>
           </v-container>
           <v-form @submit.prevent="verifyRecaptcha" ref="form" lazy-validation>
             <v-container fluid id="container-input-area-login">
               <v-container class="container-text-field-login">
                 <label for="register-fullname" class="text-bolder"
-                  >Full Name*</label
+                  >Nama Lengkap*</label
                 >
                 <v-text-field
                   id="register-fullname"
-                  placeholder="Enter Full Name"
+                  placeholder="Masukan Nama Lengkap"
                   outlined
                   type="text"
                   :rules="fullname_rules"
@@ -50,7 +50,7 @@
                 <label for="register-email" class="text-bolder">Email*</label>
                 <v-text-field
                   id="register-email"
-                  placeholder="Enter Email"
+                  placeholder="Masukan Email"
                   outlined
                   type="email"
                   v-model="customer.email"
@@ -69,7 +69,7 @@
                 >
                 <v-text-field
                   id="register-password"
-                  placeholder="Enter Password"
+                  placeholder="Masukan Password"
                   :append-icon="
                     password.visible_main ? 'mdi-eye' : 'mdi-eye-off'
                   "
@@ -113,8 +113,8 @@
               </v-container>
               <v-container id="container-remember-and-forget-pw">
                 <p>
-                  <i> By registering you agree to the Ven Barbershop </i>
-                  <span id="TOS">Terms Of Use</span>
+                  <i> Dengan mendaftar Anda setuju dengan Ven Barbershop </i>
+                  <span id="TOS">Ketentuan Penggunaan</span>
                 </p>
               </v-container>
             </v-container>
@@ -125,15 +125,15 @@
                 id="btn-login"
                 type="submit"
                 color="primary"
-                >Sign Up</v-btn
+                >Daftar</v-btn
               >
             </v-container>
           </v-form>
           <v-container id="container-footer-login">
             <p>
-              Already have an account?
+              Sudah punya akun?
               <span @click="redirectToSignIn" id="sign-up" class="pointer">
-                Sign In
+                Masuk
               </span>
             </p>
           </v-container>
@@ -158,24 +158,24 @@ export default {
       email_ok: false,
       customer: {},
       email_rules: [
-        (v) => !!v || "Field is required",
+        (v) => !!v || "Harus diisi",
         (v) =>
           /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             v
-          ) || "E-mail must be valid email address",
+          ) || "Email tidak valid",
       ],
       fullname_rules: [
-        (v) => !!v || "Field is required",
-        (v) => /^[^\d]+$/.test(v) || "Fullname cannot contain digits",
+        (v) => !!v || "Harus diisi",
+        (v) => /^[^\d]+$/.test(v) || "Nama Lengkap tidak boleh mengandung angka",
       ],
       password_rules: [
-        (v) => !!v || "Field is required",
-        (v) => (v && v.length >= 6) || "Minimum 6 characters",
-        (v) => /\d/.test(v) || "Containing minimum 1 number",
+        (v) => !!v || "Harus diisi",
+        (v) => (v && v.length >= 6) || "Minimal 6 karakter",
+        (v) => /\d/.test(v) || "Harus mengandung angka",
       ],
       password_validation: [
-        (v) => !!v || "Field is required",
-        (v) => v == this.customer.password || "Incorrect re-type password",
+        (v) => !!v || "Harus diisi",
+        (v) => v == this.customer.password || "Password tidak sesuai",
       ],
       fieldMaxLengths: {
         name: 50,

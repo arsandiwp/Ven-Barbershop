@@ -2,40 +2,36 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class NewsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         \DB::table('news')->truncate();
-        \DB::table('news')->insert(array(
-            array(
-                'title' => 'Grand Opening Barbershop',
+        \DB::table('news')->insert([
+            [
+                'title' => 'Promo Opening Cabang Baru!',
                 'date' => now(),
                 'status' => 'Published',
-                'description' => 'Kami dengan bangga membuka cabang baru barbershop kami!',
-                'image_url' => 'https://static1.squarespace.com/static/59d2f85703596eacb7278fd7/t/5a9ea054ec212d0cc09dd25a/1520345467954/Michelle+Foo+profile-circle.png',
-                'custom_url' => 'grand-opening-barbershop',
+                'description' => 'Nikmati diskon 50% untuk semua layanan di minggu pertama pembukaan cabang baru Ven Barber.',
+                'image_url' => 'https://png.pngtree.com/png-vector/20230523/ourmid/pngtree-up-to-50-off-sale-label-design-gold-color-vector-png-image_7106354.png',
+                'custom_url' => 'promo-opening-cabang-baru',
                 'created_at' => now(),
-                'updated_at' => NULL,
-                'deleted_at' => NULL,
-            ),
-            array(
-                'title' => 'Promo Cukur Gratis',
-                'date' => now()->subDays(10),
-                'status' => 'Draft',
-                'description' => 'Ikuti promo menarik cukur gratis bagi pelanggan pertama!',
-                'image_url' => 'https://static1.squarespace.com/static/59d2f85703596eacb7278fd7/t/5a9ea054ec212d0cc09dd25a/1520345467954/Michelle+Foo+profile-circle.png',
+                'updated_at' => null,
+                'deleted_at' => null,
+            ],
+            [
+                'title' => 'Promo Cukur Gratis Spesial Pelanggan Baru',
+                'date' => now()->subDays(5),
+                'status' => 'Published',
+                'description' => 'Dapatkan cukur gratis untuk 20 pelanggan pertama setiap hari selama promo berlangsung.',
+                'image_url' => 'https://i.ytimg.com/vi/FQ6WyMOcLhU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDF9rSgHQ8R-SqYYL9-A8C4l-0aMA',
                 'custom_url' => 'promo-cukur-gratis',
                 'created_at' => now(),
-                'updated_at' => NULL,
-                'deleted_at' => NULL,
-            )
-        ));
+                'updated_at' => null,
+                'deleted_at' => null,
+            ],
+        ]);
     }
 }

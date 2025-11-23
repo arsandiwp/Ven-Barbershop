@@ -23,8 +23,8 @@
       >
         <v-container fluid id="container-box-main-login">
           <v-container fluid id="container-header-login">
-            <h1>Welcome Back!</h1>
-            <p>Sign in to continue to Ven Barbershop</p>
+            <h1>Selamat Datang kembali!</h1>
+            <p>Masuk untuk melanjutkan ke Ven Barbershop</p>
           </v-container>
           <v-form @submit.prevent="send_data" lazy-validation ref="form">
             <v-container fluid id="container-input-area-login">
@@ -32,7 +32,7 @@
                 <label for="login-email" class="text-bolder">Email*</label>
                 <v-text-field
                   id="login-email"
-                  placeholder="Enter Email"
+                  placeholder="Masukan Email"
                   outlined
                   type="email"
                   :error="email_ok"
@@ -49,7 +49,7 @@
                 >
                 <v-text-field
                   id="login-password"
-                  placeholder="Enter Password"
+                  placeholder="Masukan Password"
                   :append-icon="password.visible ? 'mdi-eye' : 'mdi-eye-off'"
                   @click:append="() => (password.visible = !password.visible)"
                   :type="password.visible ? 'text' : 'password'"
@@ -71,7 +71,7 @@
                     id="remember-me"
                   />
                   <label class="form-check-label" for="remember-me"
-                    >Remember Me</label
+                    >Ingat Aku</label
                   >
                 </div>
                 <p
@@ -79,7 +79,7 @@
                   class="pointer primary--text"
                   style="font-weight: 700"
                 >
-                  Forget Password?
+                  Lupa Kata Sandi?
                 </p>
               </v-container>
             </v-container>
@@ -90,15 +90,15 @@
                 color="primary"
                 id="btn-login"
                 type="submit"
-                >Sign In</v-btn
+                >Masuk</v-btn
               >
             </v-container>
           </v-form>
           <v-container id="container-footer-login">
             <p>
-              Don't have an account?
+              Belum punya akun?
               <span @click="redirectToSignUp" id="sign-up" class="pointer">
-                Sign Up
+                Daftar
               </span>
             </p>
           </v-container>
@@ -120,17 +120,17 @@ export default {
         ok: false,
       },
       email_rules: [
-        (v) => !!v || "Field is required",
+        (v) => !!v || "Harus diisi",
         (v) =>
           /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             v
-          ) || "E-mail must be valid email address",
+          ) || "Email harus valid",
       ],
       email_ok: false,
       password_rules: [
-        (v) => !!v || "Field is required",
-        (v) => (v && v.length >= 6) || "Minimum 6 characters",
-        (v) => /\d/.test(v) || "Containing minimum 1 number",
+        (v) => !!v || "Harus diisi",
+        (v) => (v && v.length >= 6) || "Minimal 6 karakter",
+        (v) => /\d/.test(v) || "Harus mengandung angka",
       ],
     };
   },

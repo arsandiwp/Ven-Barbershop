@@ -9,7 +9,7 @@
             @click="$router.go(-1)"
             style="text-decoration: none; color: black"
           >
-            <v-icon>mdi-arrow-left-thin</v-icon> Back
+            <v-icon>mdi-arrow-left-thin</v-icon> Kembali
           </a>
         </v-col>
         <v-col class="text-right">
@@ -33,7 +33,7 @@
             v-else
             style="text-decoration: none; color: white"
           >
-            <v-icon size="16">mdi-cancel</v-icon>&nbsp;&nbsp;Cancel
+            <v-icon size="16">mdi-cancel</v-icon>&nbsp;&nbsp;Batal
           </v-btn>
         </v-col>
       </v-row>
@@ -67,10 +67,10 @@
 
             <v-row>
               <v-col cols="12" md="6">
-                <label for="name" class="text-label">Name*</label>
+                <label for="name" class="text-label">Nama*</label>
                 <v-text-field
                   id="name"
-                  placeholder="Enter Name"
+                  placeholder="Masukan Nama"
                   outlined
                   type="text"
                   v-model="model.name"
@@ -84,7 +84,7 @@
                 <label for="email" class="text-label">Email*</label>
                 <v-text-field
                   id="email"
-                  placeholder="Enter Email"
+                  placeholder="Masukan Email"
                   outlined
                   type="email"
                   v-model="model.email"
@@ -97,10 +97,10 @@
 
             <v-row>
               <v-col cols="12">
-                <label for="phone" class="text-label">Phone</label>
+                <label for="phone" class="text-label">Telepon</label>
                 <v-text-field
                   id="phone"
-                  placeholder="Enter Phone"
+                  placeholder="Masukan Telepon"
                   outlined
                   v-model="model.phone"
                   :readonly="!editable"
@@ -111,10 +111,10 @@
 
             <v-row>
               <v-col cols="12">
-                <label for="address" class="text-label">Address</label>
+                <label for="address" class="text-label">Alamat</label>
                 <v-textarea
                   id="address"
-                  placeholder="Enter Address"
+                  placeholder="Masukan Alamat"
                   outlined
                   auto-grow
                   no-resize
@@ -132,7 +132,7 @@
                 type="submit"
                 large
                 :loading="loadingSave"
-                >Save</v-btn
+                >Simpan</v-btn
               >
             </div>
           </v-container>
@@ -141,7 +141,7 @@
 
       <!-- Booking History -->
       <v-sheet color="white" elevation="2" class="mt-8 pa-6" rounded>
-        <h3 class="mb-4">📅 Booking History</h3>
+        <h3 class="mb-4">📅 Riwayat Pemesanan</h3>
 
         <v-row v-if="loadingBookings">
           <v-col cols="12" class="text-center">
@@ -165,9 +165,9 @@
                   {{ item.status }}
                 </v-chip>
               </div>
-              <p>✂️ Service: {{ item.service_name }}</p>
-              <p>📅 Date: {{ item.date }}</p>
-              <p>⏰ Time: {{ item.time }}</p>
+              <p>✂️ Layanan: {{ item.service_name }}</p>
+              <p>📅 Tanggal: {{ item.date }}</p>
+              <p>⏰ Waktu: {{ item.time }}</p>
             </v-card>
           </v-col>
         </v-row>
@@ -221,10 +221,10 @@ export default {
         imageURL: null,
       },
       bookings: [],
-      nameRules: [(v) => !!v || "Name is required"],
+      nameRules: [(v) => !!v || "Nama perlu diisi"],
       emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+/.test(v) || "E-mail must be valid",
+        (v) => !!v || "Email perlu diisi",
+        (v) => /.+@.+/.test(v) || "Email tidak valid",
       ],
     };
   },

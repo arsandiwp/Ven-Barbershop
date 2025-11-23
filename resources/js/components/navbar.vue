@@ -48,7 +48,7 @@
                 small
                 @click="goToReservation"
               >
-                Reservation Now
+                Reservasi Sekarang
               </v-btn>
             </li>
 
@@ -61,7 +61,7 @@
                 small
                 @click="goToLogin"
               >
-                Login
+                Masuk
               </v-btn>
             </li>
 
@@ -85,7 +85,7 @@
                     <v-list-item-title>Profile</v-list-item-title>
                   </v-list-item>
                   <v-list-item @click="logout">
-                    <v-list-item-title>Logout</v-list-item-title>
+                    <v-list-item-title>Keluar</v-list-item-title>
                   </v-list-item>
                 </v-list>
               </v-menu>
@@ -227,12 +227,12 @@ export default {
       hoveredIndex: -1,
       isMenuMobileClicked: false, // tambahkan ini
       links: [
-        { text: "Home", key: "home" },
-        { text: "About Us", key: "aboutus" },
-        { text: "Our Barbers", key: "barber" },
-        { text: "Services", key: "services" },
-        { text: "News", key: "news" },
-        { text: "Contact", key: "contact" },
+        { text: "Beranda", key: "home" },
+        { text: "Tentang Kami", key: "aboutus" },
+        { text: "Tukang Cukur Kami", key: "barber" },
+        { text: "Layanan", key: "services" },
+        { text: "Berita", key: "news" },
+        { text: "Kontak", key: "contact" },
       ],
       menuShown: false,
       user: null,

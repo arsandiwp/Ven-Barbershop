@@ -8,32 +8,33 @@
     >
       <v-container class="text-center white--text">
         <!-- Small tagline -->
-        <div class="overline mb-2">Welcome to</div>
+        <div class="overline mb-2">Selamat Datang di</div>
 
         <!-- Main Headline -->
         <h1 class="hero-title mb-4">Ven Barbershop</h1>
 
         <!-- Subheadline -->
         <p class="hero-subtitle mb-8">
-          Premium cuts & grooming for the modern gentleman. Experience style,
-          comfort, and confidence with every visit.
+          Potongan dan perawatan premium untuk pria modern. Hadirkan gaya
+          terbaik, kenyamanan maksimal, dan kepercayaan diri yang selalu terbawa
+          pulang di setiap kunjungan.
         </p>
 
         <!-- Highlight Features -->
         <v-row justify="center" class="mb-10">
           <v-col cols="12" sm="4" class="text-center mb-6 mb-sm-0">
             <v-icon large color="amber lighten-2">mdi-content-cut</v-icon>
-            <div class="mt-2 font-weight-medium">Professional Barbers</div>
+            <div class="mt-2 font-weight-medium">Tukang Cukur Profesional</div>
           </v-col>
 
           <v-col cols="12" sm="4" class="text-center mb-6 mb-sm-0">
             <v-icon large color="amber lighten-2">mdi-bottle-tonic</v-icon>
-            <div class="mt-2 font-weight-medium">Premium Products</div>
+            <div class="mt-2 font-weight-medium">Produk Premium</div>
           </v-col>
 
           <v-col cols="12" sm="4" class="text-center">
             <v-icon large color="amber lighten-2">mdi-sofa</v-icon>
-            <div class="mt-2 font-weight-medium">Cozy Atmosphere</div>
+            <div class="mt-2 font-weight-medium">Suasana Nyaman</div>
           </v-col>
         </v-row>
 
@@ -46,7 +47,7 @@
             dark
             @click="goToReservation"
           >
-            Reservation Now
+            Reservasi Sekarang
           </v-btn>
 
           <v-btn
@@ -56,13 +57,13 @@
             class="rounded-lg px-6 py-3 hero-btn"
             @click="scrollToSection('services')"
           >
-            View Services
+            Lihat Layanan
           </v-btn>
         </div>
 
         <!-- Bottom tagline -->
         <div class="mt-12 caption font-italic">
-          ✂️ Crafting Confidence Since 2010
+          Membangun Kepercayaan Diri Sejak 2025
         </div>
       </v-container>
     </v-img>
@@ -117,8 +118,10 @@ export default {
 
 /* Subtitle responsive */
 .hero-subtitle {
+  width: 80%;
   font-size: 1.2rem;
   line-height: 1.6;
+  margin: 0 auto;
 }
 
 @media (max-width: 600px) {

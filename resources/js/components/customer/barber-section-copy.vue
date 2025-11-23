@@ -3,10 +3,10 @@
     <div class="container">
       <v-row>
         <v-col cols="12">
-          <div class="title-text">Our Barbers</div>
+          <div class="title-text">Tukang Cukur Kami</div>
           <div class="subtitle-text">
-            Skilled professionals dedicated to giving you the best grooming
-            experience.
+            Profesional terampil yang berdedikasi untuk memberikan Anda
+            pengalaman perawatan terbaik.
           </div>
         </v-col>
       </v-row>
@@ -30,7 +30,13 @@
         >
           <div class="barber-card text-center">
             <v-avatar size="200" class="barber-avatar">
-              <v-img :src="barber.photo || 'https://cdn-icons-png.flaticon.com/512/921/921079.png'" cover></v-img>
+              <v-img
+                :src="
+                  barber.photo ||
+                  'https://cdn-icons-png.flaticon.com/512/921/921079.png'
+                "
+                cover
+              ></v-img>
             </v-avatar>
             <div class="barber-info mt-4">
               <h3 class="barber-name">{{ barber.name }}</h3>
@@ -44,7 +50,7 @@
                 elevation="3"
                 @click="goToReservation"
               >
-                Reservation Now
+                Reservasi Sekarang
               </v-btn>
             </div>
           </div>

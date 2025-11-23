@@ -23,10 +23,10 @@
       >
         <v-container fluid id="container-box-main-login">
           <v-container fluid id="container-header-login">
-            <h1>Forgot Password</h1>
+            <h1>Lupa Kata Sandi</h1>
             <p>
-              Enter your email address, and we’ll send you a message with steps
-              to reset your password.
+              Masukkan alamat email Anda, dan kami akan mengirimkan pesan berisi
+              langkah-langkah untuk mengatur ulang kata sandi Anda.
             </p>
           </v-container>
 
@@ -36,7 +36,7 @@
                 <label for="login-email" class="text-bolder">Email*</label>
                 <v-text-field
                   id="login-email"
-                  placeholder="Enter Email"
+                  placeholder="Masukan Email"
                   outlined
                   type="email"
                   :error="email_ok"
@@ -55,7 +55,7 @@
                 id="btn-login"
                 type="submit"
                 color="primary"
-                >Forgot Password</v-btn
+                >Lupa Kata Sandi</v-btn
               >
             </v-container>
           </v-form>
@@ -72,11 +72,11 @@ export default {
     return {
       admin: {},
       email_rules: [
-        (v) => !!v || "Field is required",
+        (v) => !!v || "Harus diisi email",
         (v) =>
           /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             v
-          ) || "E-mail must be valid email address",
+          ) || "Email tidak valid",
       ],
       email_ok: null,
     };
